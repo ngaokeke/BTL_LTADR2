@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_dang_nhap">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="55dp"
+        android:src="@drawable/logo_foodie"
+        android:scaleType="fitCenter"
+        android:contentDescription="Logo Foodie" />
+
+    <TextView
+        android:id="@+id/btnDongXacNhan"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_gravity="top|end"
+        android:gravity="center"
+        android:text="×"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="240dp"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:background="@drawable/bg_card_dang_nhap"
+        android:elevation="4dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Xác nhận"
+            android:textColor="#111111"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:id="@+id/txtThongBaoOTP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Mã xác thực đã được gửi đến số điện thoại"
+            android:textColor="#222222"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Vui lòng nhập mã xác thực vào ô bên dưới"
+            android:textColor="#222222"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="25dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edtOTP1"
+                style="@style/OtpBox"
+                />
+
+            <EditText
+                android:id="@+id/edtOTP2"
+                style="@style/OtpBox"
+                />
+
+            <EditText
+                android:id="@+id/edtOTP3"
+                style="@style/OtpBox"
+                />
+
+            <EditText
+                android:id="@+id/edtOTP4"
+                style="@style/OtpBox"
+                />
+
+            <EditText
+                android:id="@+id/edtOTP5"
+                style="@style/OtpBox"
+                />
+
+            <EditText
+                android:id="@+id/edtOTP6"
+                style="@style/OtpBox"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtGuiLaiMa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Không nhận được mã? Gửi lại mã"
+            android:textColor="#222222"
+            android:textSize="12sp"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <Button
+            android:id="@+id/btnHoanThanhOTP"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_button_dang_nhap"
+            android:backgroundTint="@null"
+            app:backgroundTint="@null"
+            android:text="Hoàn thành"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginTop="510dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:gravity="center"
+        android:text="Nếu bạn không nhận được OTP vui lòng gọi đến tổng đài XXXX XXXX để được hỗ trợ. Lotteria xin cảm ơn."
+        android:textColor="#222222"
+        android:textSize="12sp" />
+
+</FrameLayout>

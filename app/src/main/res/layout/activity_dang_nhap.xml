@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_dang_nhap">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- KHU VUC LOGO -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="245dp">
+
+            <ImageView
+                android:id="@+id/imgLogoDangNhap"
+                android:layout_width="165dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:src="@drawable/logo_foodie"
+                android:scaleType="fitCenter"
+                android:contentDescription="Logo Foodie" />
+
+        </FrameLayout>
+
+        <!-- KHUNG DANG NHAP -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="285dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card_dang_nhap"
+            android:elevation="4dp"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="2dp"
+                android:text="Đăng nhập hoặc Tạo tài khoản"
+                android:textColor="#111111"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Số điện thoại"
+                android:textColor="#222222"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/edtSoDienThoai"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_input_dang_nhap"
+                android:hint="Vui lòng nhập..."
+                android:inputType="phone"
+                android:maxLength="10"
+                android:paddingStart="20dp"
+                android:paddingEnd="15dp"
+                android:textColor="#222222"
+                android:textColorHint="#BBBBBB"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/btnTiepTuc"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_button_dang_nhap"
+                app:backgroundTint="@null"
+                android:text="Tiếp tục"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/btnTaoTaiKhoan"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_marginTop="9dp"
+                android:background="@drawable/bg_button_tao_tai_khoan"
+                android:gravity="center"
+                android:text="Bạn chưa có tài khoản? Tạo tài khoản ngay"
+                android:textColor="#E9232D"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- NUT DONG -->
+    <TextView
+        android:id="@+id/btnDongDangNhap"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:gravity="center"
+        android:text="×"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="Đóng đăng nhập" />
+
+</FrameLayout>
