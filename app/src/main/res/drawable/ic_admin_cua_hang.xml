@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Mái hiên và các múi bạt của cửa hàng. -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#D92129"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M3,8 L5,3.5 H19 L21,8 Z M8,8 L9,3.5 M16,8 L15,3.5 M3,8 V9 C3,10.38 4.12,11.5 5.5,11.5 C6.88,11.5 8,10.38 8,9 V8 M8,9 C8,10.38 9.79,11.5 12,11.5 C14.21,11.5 16,10.38 16,9 V8 M16,9 C16,10.38 17.12,11.5 18.5,11.5 C19.88,11.5 21,10.38 21,9 V8" />
+
+    <!-- Mặt tiền, cửa ra vào và ô cửa sổ. -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#D92129"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M4.5,11.3 V21 H19.5 V11.3 M8,21 V14 H12 V21 M15,14 H17 V17 H15 Z M3.5,21 H20.5" />
+</vector>
