@@ -325,11 +325,12 @@ public class TrangChuActivity extends AppCompatActivity {
         btnGioHangNoi.setOnClickListener(v -> moTrangGioHang());
 
         navDonHang.setOnClickListener(v -> {
-            Toast.makeText(
-                    this,
-                    "Đơn hàng",
-                    Toast.LENGTH_SHORT
-            ).show();
+            Intent intent = new Intent(
+                    TrangChuActivity.this,
+                    DonHangActivity.class
+            );
+
+            startActivity(intent);
         });
 
         navTaiKhoan.setOnClickListener(v -> {

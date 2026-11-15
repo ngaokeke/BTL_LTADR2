@@ -1,4 +1,3 @@
-
 package com.example.btl_ltadr;
 
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ public class GioHang {
         public int giaMotCombo;
         public int hinhAnh;
 
-        // Constructor cũ: giữ nguyên để code cũ tiếp tục hoạt động
         public SanPhamTrongGio(
                 int maMonAn,
                 String tenMonAn,
@@ -27,7 +25,6 @@ public class GioHang {
             this.giaMotCombo = giaMotCombo;
         }
 
-        // Constructor mới: dùng khi cần lưu hình ảnh
         public SanPhamTrongGio(
                 int maMonAn,
                 String tenMonAn,
@@ -48,7 +45,6 @@ public class GioHang {
             new HashMap<>();
 
     // Thêm món vào giỏ hàng
-    // Hàm themMon cũ: giữ nguyên để code cũ tiếp tục hoạt động
     public static void themMon(
             int maMonAn,
             String tenMonAn,

@@ -55,6 +55,9 @@
         <activity
             android:name=".XacNhanActivity"
             android:exported="false" />
+        <activity
+            android:name=".DonHangActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

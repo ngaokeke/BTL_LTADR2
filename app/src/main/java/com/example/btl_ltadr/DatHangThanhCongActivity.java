@@ -1,4 +1,3 @@
-
 package com.example.btl_ltadr;
 
 import android.content.ClipData;
@@ -94,6 +93,16 @@ public class DatHangThanhCongActivity extends AppCompatActivity {
         txtNguoiNhan.setText(
                 nguoiNhan == null ? "Khách hàng" : nguoiNhan
         );
+        // Lưu đơn hàng để hiển thị ở trang Đơn hàng
+        DonHangActivity.luuDonHang(
+                this,
+                maDon,
+                new DecimalFormat("#,###").format(tongTien) + " đ",
+                phuongThuc == null ? "Tiền mặt" : phuongThuc,
+                diaChi == null ? "Chưa cập nhật địa chỉ" : diaChi,
+                cuaHang == null ? "TAN MAI" : cuaHang,
+                nguoiNhan == null ? "Khách hàng" : nguoiNhan
+        );
     }
 
     private void xuLySuKien() {
@@ -130,10 +139,19 @@ public class DatHangThanhCongActivity extends AppCompatActivity {
                     .setNegativeButton("Không", null)
                     .setPositiveButton("Đồng ý", (dialog, which) -> {
 
+                        // Cập nhật trạng thái đơn hàng
+                        DonHangActivity.capNhatTrangThai(
+                                DatHangThanhCongActivity.this,
+                                maDon,
+                                "Đơn hàng đã hủy"
+                        );
+
                         Intent intent = new Intent(
                                 DatHangThanhCongActivity.this,
                                 DonHangDaHuyActivity.class
                         );
+
+                        // Các đoạn code còn lại giữ nguyên
 
                         // Giữ nguyên thông tin đơn hàng
                         intent.putExtra("maDon", maDon);
