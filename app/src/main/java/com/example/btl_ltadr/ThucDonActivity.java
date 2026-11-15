@@ -246,21 +246,13 @@ public class ThucDonActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        navDonHang.setOnClickListener(v -> {
-            Intent intent = new Intent(
-                    ThucDonActivity.this,
-                    DonHangActivity.class
-            );
-            startActivity(intent);
-        });
-
-        navTaiKhoan.setOnClickListener(v ->{
-                Intent intent = new Intent(
-                ThucDonActivity.this,
-                TaiKhoanActivity.class
+        navDonHang.setOnClickListener(v ->
+                Toast.makeText(this, "Đơn hàng", Toast.LENGTH_SHORT).show()
         );
-        startActivity(intent);
-    });
+
+        navTaiKhoan.setOnClickListener(v ->
+                Toast.makeText(this, "Tài khoản", Toast.LENGTH_SHORT).show()
+        );
     }
 
     // Lọc món ăn theo tên, không phân biệt chữ hoa và dấu tiếng Việt
