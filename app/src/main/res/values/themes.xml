@@ -1,9 +1,20 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<?xml version="1.0" encoding="utf-8"?>
+<resources
+    xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.BTL_LTADR" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style
+        name="Base.Theme.BTL_LTADR"
+        parent="Theme.Material3.Light.NoActionBar">
+        <item
+            name="colorPrimary">#ED252B</item>
+        <item
+            name="colorSecondary">#FFB333</item>
+        <item
+            name="android:fontFamily">@font/be_vietnam_pro</item>
+        <item
+            name="fontFamily">@font/be_vietnam_pro</item>
     </style>
-
-    <style name="Theme.BTL_LTADR" parent="Base.Theme.BTL_LTADR" />
+    <style
+        name="Theme.BTL_LTADR"
+        parent="Base.Theme.BTL_LTADR" />
 </resources>

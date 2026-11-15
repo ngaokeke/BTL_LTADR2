@@ -1,333 +1,567 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F4F4F8">
-
+    android:background="@drawable/bg_auth">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="58dp"
+        android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:background="#ED252B"
-        android:paddingHorizontal="16dp">
-
+        android:paddingHorizontal="12dp">
         <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:id="@+id/btnQuayLai"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:src="@drawable/ic_back_white"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@android:drawable/ic_media_previous"
-            android:tint="#FFFFFF"
-            android:contentDescription="Quay lại" />
-
+            android:contentDescription="@string/activity_dia_chi_giao_hang_btn_quay_lai_contentdescription_3"
+            android:padding="10dp" />
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="@string/activity_gio_hang_3_text_3"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/be_vietnam_pro"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Giỏ hàng"
-            android:textColor="#FFFFFF"
-            android:textSize="23sp"
             android:textStyle="bold" />
-
-        <View
-            android:layout_width="45dp"
-            android:layout_height="45dp" />
+        <Space
+            android:layout_width="48dp"
+            android:layout_height="1dp" />
     </LinearLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:fillViewport="true">
-
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:paddingHorizontal="12dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="12dp">
-
-            <!-- DANH SÁCH MÓN -->
-            <LinearLayout
-                android:id="@+id/llDanhSachMon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" />
-
-            <!-- ĐỊA CHỈ -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:text="📍  Địa chỉ nhận hàng"
-                android:textColor="#171717"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
+            android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:background="#FFFFFF"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingHorizontal="15dp">
-
-                <TextView
-                    android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_panel"
+                android:padding="8dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="⌂"
-                    android:textColor="#222222"
-                    android:textSize="28sp" />
-
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:text="@string/activity_gio_hang_btn_giao_hang_text_3"
+                        android:textSize="16sp"
+                        android:textColor="#171717"
+                        android:fontFamily="@font/be_vietnam_pro"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@drawable/bg_delivery_tab"
+                        android:textStyle="bold"
+                        android:id="@+id/btnGiaoHang" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:text="@string/activity_gio_hang_btn_den_lay_text_3"
+                        android:textSize="16sp"
+                        android:textColor="#171717"
+                        android:fontFamily="@font/be_vietnam_pro"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:background="@drawable/bg_delivery_tab"
+                        android:textStyle="bold"
+                        android:id="@+id/btnDenLay" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#DDDDDD" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/activity_gio_hang_txt_dia_chi_text_3"
+                        android:textSize="13sp"
+                        android:textColor="#171717"
+                        android:fontFamily="@font/be_vietnam_pro"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="18dp"
+                        android:textStyle="bold"
+                        android:id="@+id/txtDiaChi" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/activity_gio_hang_txt_sua_dia_chi_text_4"
+                        android:textSize="12sp"
+                        android:textColor="#171717"
+                        android:fontFamily="@font/be_vietnam_pro"
+                        android:id="@+id/txtSuaDiaChi" />
+                </LinearLayout>
                 <TextView
-                    android:id="@+id/txtDiaChi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_gio_hang_txt_cua_hang_text_3"
+                    android:textSize="12sp"
+                    android:textColor="#888888"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    android:layout_marginTop="4dp"
+                    android:id="@+id/txtCuaHang" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="18dp">
+                <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:text="@string/activity_gio_hang_17_text_4"
+                    android:textSize="16sp"
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/be_vietnam_pro"
                     android:layout_weight="1"
-                    android:text="96 Định Công, Hoàng Mai, Hà Nội"
-                    android:textColor="#222222"
-                    android:textSize="15sp" />
-
+                    android:textStyle="bold" />
                 <TextView
-                    android:id="@+id/txtSuaDiaChi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="›"
-                    android:textColor="#555555"
-                    android:textSize="30sp" />
+                    android:text="@string/activity_gio_hang_btn_them_mon_text_3"
+                    android:textSize="14sp"
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    app:drawableStartCompat="@drawable/ic_add_white"
+                    android:drawablePadding="6dp"
+                    android:textStyle="bold"
+                    android:id="@+id/btnThemMon" />
             </LinearLayout>
-
-            <!-- MÃ GIẢM GIÁ -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/llDanhSachMon" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:text="🏷  Mã giảm giá"
+                android:text="@string/activity_gio_hang_20_text_3"
+                android:textSize="16sp"
                 android:textColor="#171717"
-                android:textSize="18sp"
+                android:fontFamily="@font/be_vietnam_pro"
+                android:layout_marginTop="12dp"
                 android:textStyle="bold" />
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:background="#FFFFFF"
-                android:gravity="center_vertical"
-                android:padding="10dp">
-
-                <EditText
-                    android:id="@+id/edtMaGiamGia"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+                <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="55dp"
+                    android:layout_height="150dp"
+                    android:orientation="vertical"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_o_nhap_gio_hang"
-                    android:hint="Nhập mã giảm giá"
-                    android:paddingHorizontal="12dp"
-                    android:singleLine="true"
-                    android:textSize="15sp" />
-
-                <Button
-                    android:id="@+id/btnApDungMa"
-                    android:layout_width="105dp"
-                    android:layout_height="55dp"
-                    android:layout_marginStart="10dp"
-                    android:backgroundTint="#FFFFFF"
-                    android:text="Áp dụng"
-                    android:textColor="#ED252B"
-                    android:textSize="14sp" />
+                    android:id="@+id/btnThemTuongCa"
+                    android:background="@drawable/bg_item"
+                    android:layout_marginEnd="8dp"
+                    android:padding="6dp">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="72dp"
+                        android:src="@drawable/tuong_ca"
+                        android:contentDescription="@string/activity_gio_hang_24_contentdescription_3"
+                        android:scaleType="fitCenter" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:text="@string/activity_gio_hang_24_contentdescription_3"
+                        android:textSize="11sp"
+                        android:textColor="#171717"
+                        android:fontFamily="@font/be_vietnam_pro"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/activity_gio_hang_26_text_3"
+                        android:textSize="11sp"
+                        android:textColor="#171717"
+                        android:fontFamily="@font/be_vietnam_pro" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:id="@+id/btnThemTuongOt"
+                    android:background="@drawable/bg_item"
+                    android:layout_marginEnd="8dp"
+                    android:padding="6dp">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="72dp"
+                        android:src="@drawable/tuong_ot"
+                        android:contentDescription="@string/activity_gio_hang_28_contentdescription_3"
+                        android:scaleType="fitCenter" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:text="@string/activity_gio_hang_28_contentdescription_3"
+                        android:textSize="11sp"
+                        android:textColor="#171717"
+                        android:fontFamily="@font/be_vietnam_pro"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/activity_gio_hang_26_text_3"
+                        android:textSize="11sp"
+                        android:textColor="#171717"
+                        android:fontFamily="@font/be_vietnam_pro" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:id="@+id/btnThemComboSot"
+                    android:background="@drawable/bg_item"
+                    android:layout_marginEnd="8dp"
+                    android:padding="6dp">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="72dp"
+                        android:src="@drawable/combo_sot"
+                        android:contentDescription="@string/activity_gio_hang_32_contentdescription_3"
+                        android:scaleType="fitCenter" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:text="@string/activity_gio_hang_32_contentdescription_3"
+                        android:textSize="11sp"
+                        android:textColor="#171717"
+                        android:fontFamily="@font/be_vietnam_pro"
+                        android:layout_weight="1" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/activity_gio_hang_34_text_3"
+                        android:textSize="11sp"
+                        android:textColor="#171717"
+                        android:fontFamily="@font/be_vietnam_pro" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="52dp"
+                    android:layout_height="150dp"
+                    android:text="@string/activity_gio_hang_btn_xem_them_sot_text_3"
+                    android:textSize="11sp"
+                    android:textColor="#171717"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    android:gravity="center"
+                    app:drawableTopCompat="@drawable/ic_add_circle"
+                    android:id="@+id/btnXemThemSot" />
             </LinearLayout>
-
-            <!-- GHI CHÚ -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:text="📝  Ghi chú đơn hàng"
+                android:text="@string/activity_gio_hang_36_text_3"
+                android:textSize="16sp"
                 android:textColor="#171717"
-                android:textSize="18sp"
+                android:fontFamily="@font/be_vietnam_pro"
+                android:layout_marginTop="18dp"
                 android:textStyle="bold" />
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="@string/activity_gio_hang_btn_coupon_text_3"
+                android:textSize="14sp"
+                android:textColor="#171717"
+                android:fontFamily="@font/be_vietnam_pro"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_panel"
+                app:drawableStartCompat="@drawable/ic_coupon"
+                app:drawableEndCompat="@drawable/ic_chevron"
+                android:drawablePadding="12dp"
+                android:id="@+id/btnCoupon" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#FFFFFF"
-                android:orientation="vertical"
-                android:padding="12dp">
-
+                android:orientation="horizontal"
+                android:id="@+id/panelMaGiamGia"
+                android:visibility="gone">
                 <EditText
-                    android:id="@+id/edtGhiChu"
-                    android:layout_width="match_parent"
-                    android:layout_height="85dp"
-                    android:background="@drawable/bg_o_nhap_gio_hang"
-                    android:gravity="top"
-                    android:hint="Ví dụ: Ít cay, không hành, giao hàng gọi trước..."
-                    android:padding="12dp"
-                    android:textSize="14sp" />
-
-                <Switch
-                    android:id="@+id/swDungCu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:checked="true"
-                    android:text="Lấy dụng cụ ăn uống"
-                    android:textSize="14sp" />
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:id="@+id/edtMaGiamGia"
+                    android:hint="@string/activity_gio_hang_edt_ma_giam_gia_hint_4"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:textSize="14sp"
+                    android:textColor="#171717"
+                    android:textColorHint="#A6A6A6"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    android:paddingHorizontal="20dp"
+                    android:background="@drawable/bg_field"
+                    android:layout_weight="1" />
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="48dp"
+                    android:id="@+id/btnApDungMa"
+                    android:text="@string/activity_gio_hang_btn_ap_dung_ma_text_4"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/be_vietnam_pro" />
             </LinearLayout>
-
-            <!-- PHƯƠNG THỨC THANH TOÁN -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:text="▣  Phương thức thanh toán"
+                android:text="@string/activity_gio_hang_41_text_3"
+                android:textSize="16sp"
                 android:textColor="#171717"
-                android:textSize="18sp"
+                android:fontFamily="@font/be_vietnam_pro"
+                android:layout_marginTop="18dp"
                 android:textStyle="bold" />
-
-            <RadioGroup
-                android:id="@+id/rgThanhToan"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#FFFFFF"
                 android:orientation="vertical"
-                android:paddingHorizontal="12dp">
-
+                android:background="@drawable/bg_panel"
+                android:paddingHorizontal="10dp"
+                android:layout_marginTop="8dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:id="@+id/edtGhiChu"
+                    android:hint="@string/activity_gio_hang_edt_ghi_chu_hint_3"
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:textSize="14sp"
+                    android:textColor="#171717"
+                    android:textColorHint="#A6A6A6"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    android:paddingHorizontal="0dp"
+                    android:background="@android:color/transparent"
+                    android:importantForAutofill="no" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#DDDDDD" />
+                <Switch
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:id="@+id/swDungCu"
+                    android:text="@string/activity_gio_hang_sw_dung_cu_text_4"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/be_vietnam_pro" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/activity_gio_hang_46_text_3"
+                android:textSize="16sp"
+                android:textColor="#171717"
+                android:fontFamily="@font/be_vietnam_pro"
+                android:layout_marginTop="12dp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_gio_hang_48_text_3"
+                    android:textSize="13sp"
+                    android:textColor="#171717"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    android:layout_weight="1" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_gio_hang_txt_tam_tinh_text_4"
+                    android:textSize="13sp"
+                    android:textColor="#171717"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    android:id="@+id/txtTamTinh" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_gio_hang_51_text_3"
+                    android:textSize="13sp"
+                    android:textColor="#171717"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    android:layout_weight="1" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_gio_hang_txt_phi_van_chuyen_text_4"
+                    android:textSize="13sp"
+                    android:textColor="#171717"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    android:id="@+id/txtPhiVanChuyen" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_gio_hang_54_text_3"
+                    android:textSize="16sp"
+                    android:textColor="#171717"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    android:layout_weight="1"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_gio_hang_btn_tuy_chon_thanh_toan_text_3"
+                    android:textSize="12sp"
+                    android:textColor="#ED252B"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    android:id="@+id/btnTuyChonThanhToan" />
+            </LinearLayout>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rgThanhToan"
+                android:orientation="vertical"
+                android:background="@drawable/bg_panel"
+                android:layout_marginTop="8dp">
                 <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
                     android:id="@+id/rbMomo"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:text="@string/activity_gio_hang_rb_momo_text_4"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/be_vietnam_pro"
                     android:buttonTint="#ED252B"
-                    android:drawablePadding="10dp"
-                    android:text="Ví MoMo"
-                    android:textColor="#222222"
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#EEEEEE" />
-
+                    android:checked="false"
+                    android:visibility="visible"
+                    android:paddingHorizontal="8dp"
+                    app:drawableEndCompat="@drawable/ic_wallet" />
                 <RadioButton
-                    android:id="@+id/rbZaloPay"
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:buttonTint="#ED252B"
-                    android:text="Ví ZaloPay"
-                    android:textColor="#222222"
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#EEEEEE" />
-
-                <RadioButton
-                    android:id="@+id/rbQR"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:buttonTint="#ED252B"
-                    android:text="Thanh toán bằng mã QR"
-                    android:textColor="#222222"
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#EEEEEE" />
-
-                <RadioButton
-                    android:id="@+id/rbNganHang"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:buttonTint="#ED252B"
-                    android:text="Chuyển khoản ngân hàng"
-                    android:textColor="#222222"
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#EEEEEE" />
-
-                <RadioButton
+                    android:layout_height="44dp"
                     android:id="@+id/rbCOD"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:text="@string/activity_gio_hang_rb_c_o_d_text_3"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/be_vietnam_pro"
                     android:buttonTint="#ED252B"
                     android:checked="true"
-                    android:text="Thanh toán khi nhận hàng (COD)"
-                    android:textColor="#222222"
-                    android:textSize="15sp" />
-
+                    android:visibility="visible"
+                    android:paddingHorizontal="8dp"
+                    app:drawableEndCompat="@drawable/ic_cash" />
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:id="@+id/rbZaloPay"
+                    android:text="@string/activity_gio_hang_rb_zalo_pay_text_4"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    android:buttonTint="#ED252B"
+                    android:checked="false"
+                    android:visibility="gone"
+                    android:paddingHorizontal="8dp"
+                    app:drawableEndCompat="@drawable/ic_wallet" />
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:id="@+id/rbQR"
+                    android:text="@string/activity_gio_hang_rb_q_r_text_4"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    android:buttonTint="#ED252B"
+                    android:checked="false"
+                    android:visibility="gone"
+                    android:paddingHorizontal="8dp"
+                    app:drawableEndCompat="@drawable/ic_qr_code" />
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:id="@+id/rbNganHang"
+                    android:text="@string/activity_gio_hang_rb_ngan_hang_text_4"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    android:buttonTint="#ED252B"
+                    android:checked="false"
+                    android:visibility="gone"
+                    android:paddingHorizontal="8dp"
+                    app:drawableEndCompat="@drawable/ic_card" />
             </RadioGroup>
-
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
         </LinearLayout>
     </ScrollView>
-
-    <!-- THANH TỔNG TIỀN VÀ ĐẶT HÀNG -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:elevation="8dp"
         android:orientation="vertical"
-        android:padding="15dp">
-
+        android:paddingHorizontal="12dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="12dp"
+        android:elevation="6dp"
+        android:background="#FFFFFF">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:gravity="center_vertical">
-
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <TextView
-                android:id="@+id/txtSoSanPham"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Tổng tiền (0 sản phẩm)"
+                android:text="@string/activity_gio_hang_txt_so_san_pham_text_4"
+                android:textSize="16sp"
                 android:textColor="#171717"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-
+                android:fontFamily="@font/be_vietnam_pro"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:id="@+id/txtSoSanPham" />
             <TextView
-                android:id="@+id/txtTongTien"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0 đ"
-                android:textColor="#ED252B"
-                android:textSize="19sp"
-                android:textStyle="bold" />
+                android:text="@string/activity_gio_hang_txt_tam_tinh_text_4"
+                android:textSize="16sp"
+                android:textColor="#171717"
+                android:fontFamily="@font/be_vietnam_pro"
+                android:textStyle="bold"
+                android:id="@+id/txtTongTien" />
         </LinearLayout>
-
         <TextView
-            android:id="@+id/txtTamTinh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:text="Tạm tính: 0 đ" />
-
-        <TextView
-            android:id="@+id/txtPhiVanChuyen"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:text="Phí vận chuyển: 15.000 đ" />
-
+            android:text="@string/activity_gio_hang_txt_ria_thuong_text_3"
+            android:textSize="12sp"
+            android:textColor="#ED252B"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:layout_marginBottom="8dp"
+            android:id="@+id/txtRiaThuong" />
         <Button
-            android:id="@+id/btnDatHang"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="#ED252B"
-            android:text="Đặt hàng"
-            android:textAllCaps="false"
+            android:layout_height="48dp"
+            android:id="@+id/btnDatHang"
+            android:text="@string/activity_gio_hang_3_text_3"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:background="@drawable/bg_red_pill"
+            android:backgroundTint="#ED252B" />
     </LinearLayout>
-
 </LinearLayout>

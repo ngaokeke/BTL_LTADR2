@@ -1,20 +1,12 @@
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="48dp"
-    android:height="48dp"
-    android:viewportWidth="48"
-    android:viewportHeight="48">
-    <path
-        android:fillColor="@android:color/transparent"
-        android:strokeColor="#000000"
-        android:strokeWidth="2.2"
-        android:strokeLineCap="round"
-        android:strokeLineJoin="round"
-        android:pathData="M10,5 L10,17 M15,5 L15,17 M20,5 L20,17 M10,17 Q10,23 15,24 L13,43 Q13,46 16,46 Q19,46 19,43 L17,24 Q22,23 22,17 L22,5" />
-    <path
-        android:fillColor="@android:color/transparent"
-        android:strokeColor="#000000"
-        android:strokeWidth="2.2"
-        android:strokeLineCap="round"
-        android:strokeLineJoin="round"
-        android:pathData="M34,5 Q26,10 27,21 Q28,26 32,29 L31,43 Q31,46 34,46 Q37,46 37,43 L36,29 Q41,26 41,21 Q42,10 34,5 Z" />
-</vector>
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:width="24dp"
+        android:height="24dp">
+        <bitmap
+            android:src="@drawable/asset_nav_menu"
+            android:gravity="fill"
+            android:filter="true" />
+    </item>
+</layer-list>

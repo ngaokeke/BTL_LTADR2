@@ -1,13 +1,12 @@
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="48dp"
-    android:height="48dp"
-    android:viewportWidth="48"
-    android:viewportHeight="48">
-    <path
-        android:fillColor="@android:color/transparent"
-        android:strokeColor="#000000"
-        android:strokeWidth="2.5"
-        android:strokeLineCap="round"
-        android:strokeLineJoin="round"
-        android:pathData="M4,22 L22,5 Q24,3 26,5 L44,22 Q46,24 43,26 L40,26 L40,42 Q40,45 37,45 L29,45 L29,32 Q29,29 26,29 L22,29 Q19,29 19,32 L19,45 L11,45 Q8,45 8,42 L8,26 L5,26 Q2,24 4,22 Z" />
-</vector>
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:width="24dp"
+        android:height="24dp">
+        <bitmap
+            android:src="@drawable/asset_nav_home"
+            android:gravity="fill"
+            android:filter="true" />
+    </item>
+</layer-list>
