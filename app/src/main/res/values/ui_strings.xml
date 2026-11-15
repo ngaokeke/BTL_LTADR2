@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string
+        name="activity_dang_nhap_btn_dong_text"
+        formatted="false">×</string>
+    <string
+        name="activity_dat_hang_thanh_cong_4_contentdescription"
+        formatted="false">Món ăn</string>
+    <string
+        name="activity_dat_hang_thanh_cong_6_contentdescription"
+        formatted="false">Đặt hàng thành công</string>
+    <string
+        name="activity_dat_hang_thanh_cong_9_text"
+        formatted="false">Mã đơn</string>
+    <string
+        name="activity_dat_hang_thanh_cong_txt_ma_don_text"
+        formatted="false">#26110812345</string>
+    <string
+        name="activity_dat_hang_thanh_cong_btn_sao_chep_contentdescription"
+        formatted="false">Sao chép mã đơn</string>
+    <string
+        name="activity_dat_hang_thanh_cong_13_text"
+        formatted="false">Tổng thanh toán</string>
+    <string
+        name="activity_dat_hang_thanh_cong_txt_tong_thanh_toan_text"
+        formatted="false">155.000 đ</string>
+    <string
+        name="activity_dat_hang_thanh_cong_16_text"
+        formatted="false">Thanh toán bằng</string>
+    <string
+        name="activity_dat_hang_thanh_cong_txt_phuong_thuc_text"
+        formatted="false">Tiền mặt</string>
+    <string
+        name="activity_dat_hang_thanh_cong_20_contentdescription"
+        formatted="false">Địa điểm</string>
+    <string
+        name="activity_dat_hang_thanh_cong_txt_dia_chi_text"
+        formatted="false">Giao đến: Chưa cập nhật địa chỉ</string>
+    <string
+        name="activity_dat_hang_thanh_cong_23_contentdescription"
+        formatted="false">Cửa hàng</string>
+    <string
+        name="activity_dat_hang_thanh_cong_txt_cua_hang_text"
+        formatted="false">Cửa hàng: TAN MAI</string>
+    <string
+        name="activity_dat_hang_thanh_cong_26_contentdescription"
+        formatted="false">Người nhận</string>
+    <string
+        name="activity_dat_hang_thanh_cong_txt_nguoi_nhan_text"
+        formatted="false">Khách hàng  0000000000</string>
+    <string
+        name="activity_dat_hang_thanh_cong_btn_huy_don_text"
+        formatted="false">Hủy đơn hàng</string>
+    <string
+        name="activity_dat_hang_thanh_cong_btn_ve_trang_chu_text"
+        formatted="false">Về trang chủ</string>
+    <string
+        name="activity_dat_hang_thanh_cong_30_text"
+        formatted="false">Hotline    19006778</string>
+    <string
+        name="activity_don_hang_da_huy_4_contentdescription"
+        formatted="false">Đơn hàng đã hủy</string>
+    <string
+        name="activity_don_hang_da_huy_6_text"
+        formatted="false">Đã hủy đơn hàng</string>
+    <string
+        name="activity_don_hang_da_huy_btn_tiep_tuc_dat_hang_text"
+        formatted="false">Tiếp tục đặt hàng</string>
+    <string
+        name="item_uudai_img_uu_dai_contentdescription"
+        formatted="false">Ưu đãi thành viên</string>
+    <string
+        name="activity_dang_nhap_btn_dong_contentdescription_4"
+        formatted="false">Đóng</string>
+    <string
+        name="activity_dang_nhap_6_text_4"
+        formatted="false">Đăng nhập hoặc Tạo tài khoản</string>
+    <string
+        name="activity_dang_nhap_7_text_4"
+        formatted="false">Số điện thoại hoặc email</string>
+    <string
+        name="activity_dang_nhap_edt_tai_khoan_hint_4"
+        formatted="false">Vui lòng nhập...</string>
+    <string
+        name="activity_dang_nhap_btn_tiep_tuc_text_4"
+        formatted="false">Tiếp tục</string>
+    <string
+        name="activity_dang_nhap_btn_mua_khong_tai_khoan_text_4"
+        formatted="false">Mua hàng không cần tài khoản</string>
+    <string
+        name="activity_dang_nhap_14_text_3"
+        formatted="false">hoặc Đăng nhập bằng</string>
+    <string
+        name="activity_dia_chi_giao_hang_btn_quay_lai_contentdescription_3"
+        formatted="false">Quay lại</string>
+    <string
+        name="activity_dia_chi_giao_hang_edt_tim_dia_chi_hint_4"
+        formatted="false">Nhập địa chỉ giao hàng</string>
+    <string
+        name="activity_dia_chi_giao_hang_btn_vi_tri_contentdescription_3"
+        formatted="false">Vị trí hiện tại</string>
+    <string
+        name="activity_dia_chi_giao_hang_8_contentdescription_3"
+        formatted="false">Vị trí của bạn</string>
+    <string
+        name="activity_dia_chi_giao_hang_11_text_3"
+        formatted="false">96 Định Công, Hoàng Mai, Hà Nội</string>
+    <string
+        name="activity_dia_chi_giao_hang_btn_dia_chi_da_luu_text_4"
+        formatted="false">Đã lưu</string>
+    <string
+        name="activity_dia_chi_giao_hang_btn_gan_day_text_3"
+        formatted="false">Tìm kiếm gần đây</string>
+    <string
+        name="activity_dia_chi_giao_hang_btn_tao_dia_chi_text_4"
+        formatted="false">Tạo địa chỉ mới</string>
+    <string
+        name="activity_dia_chi_giao_hang_19_contentdescription_3"
+        formatted="false">Địa chỉ nhà</string>
+    <string
+        name="activity_dia_chi_giao_hang_txt_ten_dia_chi_text_4"
+        formatted="false">Phố Tân Mai</string>
+    <string
+        name="activity_dia_chi_giao_hang_21_text_3"
+        formatted="false">Mặc định</string>
+    <string
+        name="activity_dia_chi_giao_hang_btn_sua_dia_chi_contentdescription_3"
+        formatted="false">Chỉnh sửa địa chỉ</string>
+    <string
+        name="activity_dia_chi_giao_hang_txt_dia_chi_text_4"
+        formatted="false">Phố Tân Mai, Hoàng Mai, Hà Nội, Việt Nam</string>
+    <string
+        name="activity_dia_chi_giao_hang_txt_cua_hang_text_4"
+        formatted="false">Cửa hàng: TAN MAI</string>
+    <string
+        name="activity_don_hang_3_contentdescription_3"
+        formatted="false">Địa điểm</string>
+    <string
+        name="activity_don_hang_btn_sua_dia_chi_contentdescription_3"
+        formatted="false">Sửa địa chỉ</string>
+    <string
+        name="activity_don_hang_tab_tat_ca_text_3"
+        formatted="false">Tất cả</string>
+    <string
+        name="activity_don_hang_tab_thanh_cong_text_3"
+        formatted="false">Đặt thành công</string>
+    <string
+        name="activity_don_hang_tab_dang_giao_text_3"
+        formatted="false">Đang giao hàng</string>
+    <string
+        name="activity_don_hang_txt_don_hang_trong_text_2"
+        formatted="false">Chưa có đơn hàng đang giao</string>
+    <string
+        name="activity_don_hang_14_contentdescription_2"
+        formatted="false">Yêu thương 1</string>
+    <string
+        name="activity_don_hang_16_text_2"
+        formatted="false">2 người</string>
+    <string
+        name="activity_don_hang_18_text_2"
+        formatted="false">145.000 ₫</string>
+    <string
+        name="activity_don_hang_btn_chi_tiet_don0_text_4"
+        formatted="false">Xem chi tiết đơn hàng</string>
+    <string
+        name="activity_don_hang_21_text_2"
+        formatted="false">Giao thành công</string>
+    <string
+        name="activity_don_hang_btn_dat_lai0_text_4"
+        formatted="false">Đặt lại</string>
+    <string
+        name="activity_don_hang_24_contentdescription_2"
+        formatted="false">Hạnh phúc 2</string>
+    <string
+        name="activity_don_hang_26_text_2"
+        formatted="false">4 người</string>
+    <string
+        name="activity_don_hang_28_text_2"
+        formatted="false">280.000 ₫</string>
+    <string
+        name="activity_don_hang_34_contentdescription_2"
+        formatted="false">Combo Burger Tôm</string>
+    <string
+        name="activity_don_hang_36_text_2"
+        formatted="false">3 người</string>
+    <string
+        name="activity_don_hang_38_text_2"
+        formatted="false">85.000 ₫</string>
+    <string
+        name="activity_gio_hang_3_text_3"
+        formatted="false">Thanh toán</string>
+    <string
+        name="activity_gio_hang_btn_giao_hang_text_3"
+        formatted="false">Giao hàng</string>
+    <string
+        name="activity_gio_hang_btn_den_lay_text_3"
+        formatted="false">Đến lấy</string>
+    <string
+        name="activity_gio_hang_txt_dia_chi_text_3"
+        formatted="false">96 Định Công, Hoàng Mai, Hà Nội, Việt Nam</string>
+    <string
+        name="activity_gio_hang_txt_sua_dia_chi_text_4"
+        formatted="false">Chỉnh sửa</string>
+    <string
+        name="activity_gio_hang_txt_cua_hang_text_3"
+        formatted="false">Cửa hàng: ĐỊNH CÔNG</string>
+    <string
+        name="activity_gio_hang_17_text_4"
+        formatted="false">Thông tin đơn hàng</string>
+    <string
+        name="activity_gio_hang_btn_them_mon_text_3"
+        formatted="false">Thêm món</string>
+    <string
+        name="activity_gio_hang_20_text_3"
+        formatted="false">Ngon hơn khi ăn kèm</string>
+    <string
+        name="activity_gio_hang_24_contentdescription_3"
+        formatted="false">1 gói tương cà</string>
+    <string
+        name="activity_gio_hang_26_text_3"
+        formatted="false">1.000đ</string>
+    <string
+        name="activity_gio_hang_28_contentdescription_3"
+        formatted="false">1 gói tương ớt ngọt</string>
+    <string
+        name="activity_gio_hang_32_contentdescription_3"
+        formatted="false">1 gói tương cà + 2 gói tương ớt ngọt</string>
+    <string
+        name="activity_gio_hang_34_text_3"
+        formatted="false">2.000đ</string>
+    <string
+        name="activity_gio_hang_btn_xem_them_sot_text_3"
+        formatted="false">Xem thêm</string>
+    <string
+        name="activity_gio_hang_36_text_3"
+        formatted="false">Ưu đãi</string>
+    <string
+        name="activity_gio_hang_btn_coupon_text_3"
+        formatted="false">Coupon của tôi</string>
+    <string
+        name="activity_gio_hang_edt_ma_giam_gia_hint_4"
+        formatted="false">Nhập mã ưu đãi</string>
+    <string
+        name="activity_gio_hang_btn_ap_dung_ma_text_4"
+        formatted="false">Áp dụng</string>
+    <string
+        name="activity_gio_hang_41_text_3"
+        formatted="false">Ghi chú</string>
+    <string
+        name="activity_gio_hang_edt_ghi_chu_hint_3"
+        formatted="false">Ghi chú đơn hàng</string>
+    <string
+        name="activity_gio_hang_sw_dung_cu_text_4"
+        formatted="false">Lấy dụng cụ ăn uống nhựa</string>
+    <string
+        name="activity_gio_hang_46_text_3"
+        formatted="false">Thông tin thanh toán</string>
+    <string
+        name="activity_gio_hang_48_text_3"
+        formatted="false">Tạm tính</string>
+    <string
+        name="activity_gio_hang_txt_tam_tinh_text_4"
+        formatted="false">0 ₫</string>
+    <string
+        name="activity_gio_hang_51_text_3"
+        formatted="false">Phí vận chuyển</string>
+    <string
+        name="activity_gio_hang_txt_phi_van_chuyen_text_4"
+        formatted="false">10.000đ</string>
+    <string
+        name="activity_gio_hang_54_text_3"
+        formatted="false">Phương thức thanh toán</string>
+    <string
+        name="activity_gio_hang_btn_tuy_chon_thanh_toan_text_3"
+        formatted="false">Tuỳ chọn khác</string>
+    <string
+        name="activity_gio_hang_rb_momo_text_4"
+        formatted="false">Ví momo</string>
+    <string
+        name="activity_gio_hang_rb_c_o_d_text_3"
+        formatted="false">Tiền mặt</string>
+    <string
+        name="activity_gio_hang_rb_zalo_pay_text_4"
+        formatted="false">Ví ZaloPay</string>
+    <string
+        name="activity_gio_hang_rb_q_r_text_4"
+        formatted="false">Thanh toán bằng mã QR</string>
+    <string
+        name="activity_gio_hang_rb_ngan_hang_text_4"
+        formatted="false">Chuyển khoản ngân hàng</string>
+    <string
+        name="activity_gio_hang_txt_so_san_pham_text_4"
+        formatted="false">Tổng cộng</string>
+    <string
+        name="activity_gio_hang_txt_ria_thuong_text_3"
+        formatted="false">Tích 0 RIA khi hoàn thành đơn</string>
+    <string
+        name="activity_tai_khoan_4_contentdescription_3"
+        formatted="false">Ảnh đại diện</string>
+    <string
+        name="activity_tai_khoan_txt_ten_tai_khoan_text_4"
+        formatted="false">Tên</string>
+    <string
+        name="activity_tai_khoan_txt_so_dien_thoai_text_4"
+        formatted="false">0372629121</string>
+    <string
+        name="activity_tai_khoan_btn_thanh_vien_text_4"
+        formatted="false">MEMBER | 0 ĐIểm</string>
+    <string
+        name="activity_tai_khoan_btn_don_hang_text_3"
+        formatted="false">Đơn hàng</string>
+    <string
+        name="activity_tai_khoan_12_text_3"
+        formatted="false">Cá nhân</string>
+    <string
+        name="activity_tai_khoan_btn_mon_yeu_thich_text_4"
+        formatted="false">Món yêu thích</string>
+    <string
+        name="activity_tai_khoan_btn_dia_chi_giao_hang_text_4"
+        formatted="false">Địa chỉ giao hàng</string>
+    <string
+        name="activity_tai_khoan_btn_the_thanh_toan_text_4"
+        formatted="false">Quản lý thẻ thanh toán</string>
+    <string
+        name="activity_tai_khoan_btn_tai_khoan_mang_xa_hoi_text_4"
+        formatted="false">Tài khoản mạng xã hội</string>
+    <string
+        name="activity_tai_khoan_21_text_3"
+        formatted="false">Hỗ trợ</string>
+    <string
+        name="activity_tai_khoan_btn_gop_y_text_4"
+        formatted="false">Góp ý và phản hồi</string>
+    <string
+        name="activity_tai_khoan_btn_chinh_sach_text_4"
+        formatted="false">Chính sách</string>
+    <string
+        name="activity_tai_khoan_btn_ngon_ngu_text_4"
+        formatted="false">Ngôn ngữ</string>
+    <string
+        name="activity_tai_khoan_btn_lien_he_text_4"
+        formatted="false">Thông tin liên hệ</string>
+    <string
+        name="activity_tai_khoan_btn_tim_cua_hang_text_4"
+        formatted="false">Tìm cửa hàng</string>
+    <string
+        name="activity_tai_khoan_btn_dang_xuat_text_4"
+        formatted="false">Đăng xuất</string>
+    <string
+        name="activity_thong_tin_giao_hang_6_text_4"
+        formatted="false">Thông tin giao hàng</string>
+    <string
+        name="activity_thong_tin_giao_hang_7_text_4"
+        formatted="false">Tên người nhận hàng</string>
+    <string
+        name="activity_thong_tin_giao_hang_9_text_3"
+        formatted="false">Số điện thoại</string>
+    <string
+        name="activity_thong_tin_giao_hang_btn_hoan_thanh_text_4"
+        formatted="false">Hoàn thành</string>
+    <string
+        name="activity_thuc_don_btn_danh_muc_text_3"
+        formatted="false">Bestseller</string>
+    <string
+        name="activity_thuc_don_7_text_3"
+        formatted="false">BEST SELLER</string>
+    <string
+        name="activity_thuc_don_10_text_3"
+        formatted="false">Giỏ hàng</string>
+    <string
+        name="activity_thuc_don_txt_so_mon_text_3"
+        formatted="false">0 món</string>
+    <string
+        name="activity_trang_chu_chua_dang_nhap_btn_quet_ma_contentdescription_4"
+        formatted="false">Quét mã QR</string>
+    <string
+        name="activity_trang_chu_chua_dang_nhap_btn_thong_bao_contentdescription_4"
+        formatted="false">Thông báo</string>
+    <string
+        name="activity_trang_chu_chua_dang_nhap_btn_dang_nhap_text_4"
+        formatted="false">Đăng nhập</string>
+    <string
+        name="activity_trang_chu_chua_dang_nhap_txt_dia_chi_giao_hang_text_4"
+        formatted="false">96 Định Công, Hoàng...</string>
+    <string
+        name="activity_trang_chu_chua_dang_nhap_14_contentdescription_3"
+        formatted="false">Chọn địa chỉ</string>
+    <string
+        name="activity_trang_chu_chua_dang_nhap_btn_doi_qua_text_3"
+        formatted="false">ĐỔI QUÀ</string>
+    <string
+        name="activity_trang_chu_chua_dang_nhap_btn_quyen_loi_text_3"
+        formatted="false">Quyền Lợi</string>
+    <string
+        name="activity_trang_chu_chua_dang_nhap_btn_dat_hang_ngay_text_4"
+        formatted="false">ĐẶT HÀNG NGAY</string>
+    <string
+        name="activity_trang_chu_chua_dang_nhap_txt_tieu_de_uu_dai_text_4"
+        formatted="false">Ưu Đãi Của Tôi</string>
+    <string
+        name="activity_trang_chu_chua_dang_nhap_txt_tieu_de_mon_an_text_4"
+        formatted="false">Bán chạy</string>
+    <string
+        name="activity_trang_chu_chua_dang_nhap_btn_menu_text_4"
+        formatted="false">Menu</string>
+    <string
+        name="activity_uu_dai_tab_online_text_3"
+        formatted="false">Đặt Online</string>
+    <string
+        name="activity_uu_dai_tab_cua_hang_text_3"
+        formatted="false">Online &amp; Cửa Hàng</string>
+    <string
+        name="activity_uu_dai_txt_ma_uu_dai_text_4"
+        formatted="false">mã ưu đãi</string>
+    <string
+        name="activity_uu_dai_txt_thong_tin_uu_dai_text_4"
+        formatted="false">Thông tin Ưu đãi</string>
+    <string
+        name="activity_uu_dai_txt_han_su_dung_text_4"
+        formatted="false">HSD: XX/YY/ZZZZ</string>
+    <string
+        name="activity_uu_dai_btn_chi_tiet_uu_dai_text_4"
+        formatted="false">Chi tiết</string>
+    <string
+        name="activity_xac_nhan_6_text_4"
+        formatted="false">Xác nhận</string>
+    <string
+        name="activity_xac_nhan_txt_thong_bao_otp_text_3"
+        formatted="false">Mã xác thực đã được gửi đến 0862116906</string>
+    <string
+        name="activity_xac_nhan_8_text_4"
+        formatted="false">Vui lòng nhập mã xác thực vào ô bên dưới</string>
+    <string
+        name="activity_xac_nhan_edt_otp1_contentdescription_4"
+        formatted="false">Chữ số xác thực 1</string>
+    <string
+        name="activity_xac_nhan_edt_otp2_contentdescription_4"
+        formatted="false">Chữ số xác thực 2</string>
+    <string
+        name="activity_xac_nhan_edt_otp3_contentdescription_4"
+        formatted="false">Chữ số xác thực 3</string>
+    <string
+        name="activity_xac_nhan_edt_otp4_contentdescription_4"
+        formatted="false">Chữ số xác thực 4</string>
+    <string
+        name="activity_xac_nhan_edt_otp5_contentdescription_4"
+        formatted="false">Chữ số xác thực 5</string>
+    <string
+        name="activity_xac_nhan_edt_otp6_contentdescription_4"
+        formatted="false">Chữ số xác thực 6</string>
+    <string
+        name="activity_xac_nhan_btn_gui_lai_ma_text_4"
+        formatted="false">Không nhận được mã? Gửi lại mã (01:00)</string>
+    <string
+        name="activity_xac_nhan_18_text_4"
+        formatted="false">Nếu bạn không nhận được OTP vui lòng gọi đến tổng đài XXXX XXXX để được hỗ trợ.
+Lotteria xin cảm ơn.</string>
+    <string
+        name="chitiet_monan_activity_img_hinh_anh_contentdescription_3"
+        formatted="false">Ảnh món ăn</string>
+    <string
+        name="chitiet_monan_activity_txt_ten_mon_an_text_3"
+        formatted="false">Tên món</string>
+    <string
+        name="chitiet_monan_activity_txt_gia_mon_an_text_2"
+        formatted="false">185.000 ₫</string>
+    <string
+        name="chitiet_monan_activity_txt_gia_cu_text_3"
+        formatted="false">Giá trước ưu đãi</string>
+    <string
+        name="chitiet_monan_activity_txt_mo_ta_text_3"
+        formatted="false">03 Gà rán, 02 Mỳ ý (M), 01 Khoai tây chiên (M), 03 Pepsi (M), Đã bao gồm: 5 tương ớt, 1 tương cà.</string>
+    <string
+        name="chitiet_monan_activity_btn_giam_so_luong_text_3"
+        formatted="false">-</string>
+    <string
+        name="chitiet_monan_activity_txt_so_luong_text_3"
+        formatted="false">1</string>
+    <string
+        name="chitiet_monan_activity_btn_tang_so_luong_text_3"
+        formatted="false">+</string>
+    <string
+        name="chitiet_monan_activity_btn_them_gio_hang_text_3"
+        formatted="false">Thêm giỏ hàng: 185.000 ₫</string>
+    <string
+        name="item_gio_hang_txt_cart_details_text"
+        formatted="false">1x Yêu thương 1</string>
+    <string
+        name="item_gio_hang_txt_cart_price_text"
+        formatted="false">145.000đ</string>
+    <string
+        name="item_monan_txt_gia_cu_text_2"
+        formatted="false">186.000đ</string>
+    <string
+        name="item_monan_btn_cong_contentdescription_3"
+        formatted="false">Thêm món vào giỏ hàng</string>
+    <string
+        name="trangchu_activity_txt_loi_chao_text_4"
+        formatted="false">Chào buổi trưa, [Tên]!</string>
+    <string
+        name="trangchu_activity_img_ga_ran_header_contentdescription_3"
+        formatted="false">Gà rán</string>
+    <string
+        name="trangchu_activity_txt_diem_r_i_a_text_3"
+        formatted="false">0</string>
+    <string
+        name="trangchu_activity_18_text_3"
+        formatted="false">RIA</string>
+    <string
+        name="trangchu_activity_txt_hang_thanh_vien_text_4"
+        formatted="false">MEMBER</string>
+    <string
+        name="trangchu_activity_21_text_3"
+        formatted="false">Tích thêm 50 RIA để thăng hạng VIP</string>
+    <string
+        name="view_bottom_navigation_4_contentdescription_3"
+        formatted="false">Trang chủ</string>
+    <string
+        name="view_bottom_navigation_7_contentdescription_3"
+        formatted="false">Thực đơn</string>
+    <string
+        name="view_bottom_navigation_16_contentdescription_3"
+        formatted="false">Tài khoản</string>
+    <string
+        name="activity_thuc_don_btn_tim_kiem_contentdescription"
+        formatted="false">Tìm món ăn</string>
+</resources>
