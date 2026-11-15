@@ -1,3 +1,4 @@
+
 package com.example.btl_ltadr;
 
 import android.content.ClipData;
@@ -28,6 +29,13 @@ public class DatHangThanhCongActivity extends AppCompatActivity {
     private TextView btnVeTrangChu;
 
     private String maDon;
+    private String danhSachMonJson = "[]";
+
+    private String phuongThuc;
+    private String diaChi;
+    private String cuaHang;
+    private String nguoiNhan;
+    private int tongTien;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,12 +71,40 @@ public class DatHangThanhCongActivity extends AppCompatActivity {
             maDon = "#261108" + (System.currentTimeMillis() % 100000);
         }
 
-        int tongTien = intent.getIntExtra("tongTien", 0);
+        tongTien = intent.getIntExtra("tongTien", 0);
 
-        String phuongThuc = intent.getStringExtra("phuongThuc");
-        String diaChi = intent.getStringExtra("diaChi");
-        String cuaHang = intent.getStringExtra("cuaHang");
-        String nguoiNhan = intent.getStringExtra("nguoiNhan");
+        phuongThuc = intent.getStringExtra("phuongThuc");
+        diaChi = intent.getStringExtra("diaChi");
+        cuaHang = intent.getStringExtra("cuaHang");
+        nguoiNhan = intent.getStringExtra("nguoiNhan");
+
+        // LẤY DANH SÁCH COMBO TỪ MÀN HÌNH TRƯỚC
+        danhSachMonJson = intent.getStringExtra("danhSachMonJson");
+
+        // Hỗ trợ trường hợp màn hình trước sử dụng key danhSachMon
+        if (danhSachMonJson == null || danhSachMonJson.trim().isEmpty()) {
+            danhSachMonJson = intent.getStringExtra("danhSachMon");
+        }
+
+        if (danhSachMonJson == null || danhSachMonJson.trim().isEmpty()) {
+            danhSachMonJson = "[]";
+        }
+
+        if (phuongThuc == null) {
+            phuongThuc = "Tiền mặt";
+        }
+
+        if (diaChi == null) {
+            diaChi = "Chưa cập nhật địa chỉ";
+        }
+
+        if (cuaHang == null) {
+            cuaHang = "TAN MAI";
+        }
+
+        if (nguoiNhan == null) {
+            nguoiNhan = "Khách hàng";
+        }
 
         txtMaDon.setText(maDon);
 
@@ -76,32 +112,21 @@ public class DatHangThanhCongActivity extends AppCompatActivity {
                 new DecimalFormat("#,###").format(tongTien) + " đ"
         );
 
-        txtPhuongThuc.setText(
-                phuongThuc == null ? "Tiền mặt" : phuongThuc
-        );
+        txtPhuongThuc.setText(phuongThuc);
+        txtDiaChi.setText("Giao đến: " + diaChi);
+        txtCuaHang.setText("Cửa hàng: " + cuaHang);
+        txtNguoiNhan.setText(nguoiNhan);
 
-        txtDiaChi.setText(
-                "Giao đến: " +
-                        (diaChi == null ? "Chưa cập nhật địa chỉ" : diaChi)
-        );
-
-        txtCuaHang.setText(
-                "Cửa hàng: " +
-                        (cuaHang == null ? "TAN MAI" : cuaHang)
-        );
-
-        txtNguoiNhan.setText(
-                nguoiNhan == null ? "Khách hàng" : nguoiNhan
-        );
-        // Lưu đơn hàng để hiển thị ở trang Đơn hàng
+        // LƯU ĐƠN HÀNG KÈM DANH SÁCH COMBO
         DonHangActivity.luuDonHang(
                 this,
                 maDon,
                 new DecimalFormat("#,###").format(tongTien) + " đ",
-                phuongThuc == null ? "Tiền mặt" : phuongThuc,
-                diaChi == null ? "Chưa cập nhật địa chỉ" : diaChi,
-                cuaHang == null ? "TAN MAI" : cuaHang,
-                nguoiNhan == null ? "Khách hàng" : nguoiNhan
+                phuongThuc,
+                diaChi,
+                cuaHang,
+                nguoiNhan,
+                danhSachMonJson
         );
     }
 
@@ -139,7 +164,7 @@ public class DatHangThanhCongActivity extends AppCompatActivity {
                     .setNegativeButton("Không", null)
                     .setPositiveButton("Đồng ý", (dialog, which) -> {
 
-                        // Cập nhật trạng thái đơn hàng
+                        // CẬP NHẬT TRẠNG THÁI ĐƠN HÀNG
                         DonHangActivity.capNhatTrangThai(
                                 DatHangThanhCongActivity.this,
                                 maDon,
@@ -151,44 +176,15 @@ public class DatHangThanhCongActivity extends AppCompatActivity {
                                 DonHangDaHuyActivity.class
                         );
 
-                        // Các đoạn code còn lại giữ nguyên
-
-                        // Giữ nguyên thông tin đơn hàng
                         intent.putExtra("maDon", maDon);
-
-                        String tongTienText =
-                                txtTongThanhToan.getText().toString();
-
-                        tongTienText = tongTienText.replaceAll("[^0-9]", "");
-
-                        int tongTien = 0;
-
-                        try {
-                            tongTien = Integer.parseInt(tongTienText);
-                        } catch (NumberFormatException e) {
-                            tongTien = 0;
-                        }
-
                         intent.putExtra("tongTien", tongTien);
+                        intent.putExtra("phuongThuc", phuongThuc);
+                        intent.putExtra("diaChi", diaChi);
+                        intent.putExtra("cuaHang", cuaHang);
+                        intent.putExtra("nguoiNhan", nguoiNhan);
+                        intent.putExtra("danhSachMonJson", danhSachMonJson);
 
-                        intent.putExtra(
-                                "phuongThuc",
-                                txtPhuongThuc.getText().toString()
-                        );
-
-                        intent.putExtra(
-                                "diaChi",
-                                txtDiaChi.getText().toString()
-                        );
-
-                        intent.putExtra("cuaHang", "TAN MAI");
-
-                        intent.putExtra(
-                                "nguoiNhan",
-                                txtNguoiNhan.getText().toString()
-                        );
-
-                        // Tạo thông báo khi hủy đơn hàng
+                        // TẠO THÔNG BÁO
                         ThongBaoDonHang.taoKenhThongBao(this);
 
                         ThongBaoDonHang.guiThongBao(

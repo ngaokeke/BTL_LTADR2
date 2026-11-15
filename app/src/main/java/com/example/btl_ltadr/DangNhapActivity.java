@@ -1,6 +1,7 @@
 package com.example.btl_ltadr;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,12 +22,48 @@ public class DangNhapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dang_nhap);
 
+        // Kiểm tra đã đăng nhập chưa
+        SharedPreferences session = getSharedPreferences(
+                "FOODIE_SESSION",
+                MODE_PRIVATE
+        );
+
+        boolean daDangNhap = session.getBoolean(
+                "DANG_DANG_NHAP",
+                false
+        );
+
+        if (daDangNhap) {
+            Intent intent = new Intent(
+                    DangNhapActivity.this,
+                    TrangChuActivity.class
+            );
+
+            intent.putExtra(
+                    "TEN_KHACH_HANG",
+                    session.getString("TEN_KHACH_HANG", "")
+            );
+
+            intent.putExtra(
+                    "SO_DIEN_THOAI",
+                    session.getString("SO_DIEN_THOAI", "")
+            );
+
+            intent.addFlags(
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            Intent.FLAG_ACTIVITY_SINGLE_TOP
+            );
+
+            startActivity(intent);
+            finish();
+            return;
+        }
+
         anhXa();
         xuLySuKien();
     }
 
     private void anhXa() {
-
         edtSoDienThoai = findViewById(R.id.edtSoDienThoai);
         btnTiepTuc = findViewById(R.id.btnTiepTuc);
         btnTaoTaiKhoan = findViewById(R.id.btnTaoTaiKhoan);
@@ -35,14 +72,12 @@ public class DangNhapActivity extends AppCompatActivity {
 
     private void xuLySuKien() {
 
-        // Dong trang dang nhap
         btnDongDangNhap.setOnClickListener(v -> {
             finish();
         });
 
-        // Tiep tuc dang nhap
-
         btnTiepTuc.setOnClickListener(v -> {
+
             String soDienThoai =
                     edtSoDienThoai.getText().toString().trim();
 
@@ -63,10 +98,11 @@ public class DangNhapActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-
-        // Chuyen sang trang dang ky (se ket noi sau)
         btnTaoTaiKhoan.setOnClickListener(v -> {
-            startActivity(new Intent(DangNhapActivity.this, DangKyActivity.class));
+            startActivity(new Intent(
+                    DangNhapActivity.this,
+                    DangKyActivity.class
+            ));
         });
     }
 }

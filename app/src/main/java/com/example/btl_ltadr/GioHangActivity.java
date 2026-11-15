@@ -23,6 +23,9 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -415,9 +418,14 @@ public class GioHangActivity extends AppCompatActivity {
     }
 
     // Xử lý đặt hàng
+
+    // XỬ LÝ ĐẶT HÀNG
     private void datHang() {
 
-        if (GioHang.layDanhSach().isEmpty()) {
+        ArrayList<GioHang.SanPhamTrongGio> danhSach =
+                GioHang.layDanhSach();
+
+        if (danhSach.isEmpty()) {
 
             Toast.makeText(
                     this,
@@ -428,7 +436,7 @@ public class GioHangActivity extends AppCompatActivity {
             return;
         }
 
-        // Kiểm tra phương thức thanh toán
+        // KIỂM TRA PHƯƠNG THỨC THANH TOÁN
         int idDuocChon = rgThanhToan.getCheckedRadioButtonId();
 
         if (idDuocChon == -1) {
@@ -446,15 +454,13 @@ public class GioHangActivity extends AppCompatActivity {
 
         String phuongThuc = radioButton.getText().toString();
 
-        // Lấy ghi chú
         String ghiChu = edtGhiChu.getText().toString().trim();
 
-        // Lấy lựa chọn dụng cụ ăn uống
         String dungCu = swDungCu.isChecked()
                 ? "Có lấy dụng cụ ăn uống"
                 : "Không lấy dụng cụ ăn uống";
 
-        // Tính tổng tiền
+        // TÍNH TỔNG TIỀN
         int tongTien = GioHang.layTongTien()
                 + phiVanChuyen
                 - giamGia;
@@ -463,14 +469,42 @@ public class GioHangActivity extends AppCompatActivity {
             tongTien = 0;
         }
 
-        // Tạo mã đơn hàng
+        // TẠO MÃ ĐƠN
         String maDon = "#DH" +
                 (System.currentTimeMillis() % 100000000);
 
-        // Lấy địa chỉ giao hàng
         String diaChi = txtDiaChi.getText().toString();
 
-        // Tạo Intent chuyển sang màn hình thành công
+        // CHUYỂN DANH SÁCH COMBO SANG JSON
+        JSONArray danhSachMonJson = new JSONArray();
+
+        try {
+
+            for (GioHang.SanPhamTrongGio mon : danhSach) {
+
+                JSONObject object = new JSONObject();
+
+                object.put("maMonAn", mon.maMonAn);
+                object.put("tenMonAn", mon.tenMonAn);
+                object.put("hinhAnh", mon.hinhAnh);
+                object.put("giaMotCombo", mon.giaMotCombo);
+                object.put("soLuong", mon.soLuong);
+
+                danhSachMonJson.put(object);
+            }
+
+        } catch (Exception e) {
+
+            Toast.makeText(
+                    this,
+                    "Không thể lưu thông tin sản phẩm",
+                    Toast.LENGTH_SHORT
+            ).show();
+
+            return;
+        }
+
+        // TẠO INTENT CHUYỂN SANG MÀN HÌNH THÀNH CÔNG
         Intent intent = new Intent(
                 GioHangActivity.this,
                 DatHangThanhCongActivity.class
@@ -485,7 +519,13 @@ public class GioHangActivity extends AppCompatActivity {
         intent.putExtra("ghiChu", ghiChu);
         intent.putExtra("dungCu", dungCu);
 
-        // Gửi thông báo đặt hàng thành công
+        // GỬI DANH SÁCH COMBO SANG MÀN HÌNH THÀNH CÔNG
+        intent.putExtra(
+                "danhSachMon",
+                danhSachMonJson.toString()
+        );
+
+        // GỬI THÔNG BÁO ĐẶT HÀNG
         ThongBaoDonHang.guiThongBao(
                 GioHangActivity.this,
                 "Đặt hàng thành công",
@@ -496,14 +536,14 @@ public class GioHangActivity extends AppCompatActivity {
                 1001
         );
 
-        // Xóa giỏ hàng sau khi đặt hàng
+        // XÓA GIỎ HÀNG SAU KHI ĐÃ LẤY DỮ LIỆU
         GioHang.xoaTatCa();
 
-        // Chuyển sang màn hình đặt hàng thành công
         startActivity(intent);
 
         finish();
     }
+
 
     // Chuyển đổi dp
     private int dp(int giaTri) {

@@ -260,7 +260,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:background="@drawable/bg_nav_don_hang_selected">
+                android:background="@drawable/bg_nav_selected">
 
                 <ImageView
                     android:layout_width="38dp"

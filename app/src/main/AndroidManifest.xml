@@ -58,6 +58,9 @@
         <activity
             android:name=".DonHangActivity"
             android:exported="false" />
+        <activity
+            android:name=".TaiKhoanActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

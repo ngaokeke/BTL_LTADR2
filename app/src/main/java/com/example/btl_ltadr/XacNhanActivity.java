@@ -70,23 +70,43 @@ public class XacNhanActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         soDienThoai = intent.getStringExtra("SO_DIEN_THOAI");
+        tenKhachHang = intent.getStringExtra("TEN_KHACH_HANG");
 
         if (soDienThoai == null) {
             soDienThoai = "";
         }
 
-        tenKhachHang = intent.getStringExtra("TEN_KHACH_HANG");
-
         if (tenKhachHang == null || tenKhachHang.trim().isEmpty()) {
-            SharedPreferences preferences =
-                    getSharedPreferences("FOODIE_DATA", MODE_PRIVATE);
 
-            String sdtDaDangKy =
-                    preferences.getString("SO_DIEN_THOAI", "");
+            SharedPreferences preferences = getSharedPreferences(
+                    "FOODIE_DATA",
+                    MODE_PRIVATE
+            );
 
-            if (soDienThoai.equals(sdtDaDangKy)) {
-                tenKhachHang =
-                        preferences.getString("TEN_KHACH_HANG", "");
+            String duLieu = preferences.getString(
+                    "DANH_SACH_TAI_KHOAN",
+                    "[]"
+            );
+
+            try {
+                org.json.JSONArray danhSach = new org.json.JSONArray(duLieu);
+
+                for (int i = 0; i < danhSach.length(); i++) {
+                    org.json.JSONObject taiKhoan = danhSach.getJSONObject(i);
+
+                    if (soDienThoai.equals(
+                            taiKhoan.optString("SO_DIEN_THOAI")
+                    )) {
+                        tenKhachHang = taiKhoan.optString(
+                                "TEN_KHACH_HANG",
+                                ""
+                        );
+                        break;
+                    }
+                }
+
+            } catch (Exception e) {
+                tenKhachHang = "";
             }
         }
 
@@ -263,6 +283,19 @@ public class XacNhanActivity extends AppCompatActivity {
                 xoaCacOOTP();
                 return;
             }
+
+            // Lưu phiên đăng nhập sau khi OTP chính xác
+            SharedPreferences session = getSharedPreferences(
+                    "FOODIE_SESSION",
+                    MODE_PRIVATE
+            );
+
+            session.edit()
+                    .putBoolean("DANG_DANG_NHAP", true)
+                    .putString("SO_DIEN_THOAI", soDienThoai)
+                    .putString("TEN_KHACH_HANG", tenKhachHang)
+                    .apply();
+
 
             Toast.makeText(
                     this,

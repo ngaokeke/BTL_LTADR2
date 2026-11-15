@@ -1,5 +1,7 @@
 package com.example.btl_ltadr;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -7,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -111,7 +114,42 @@ public class MonAnAdapter extends RecyclerView.Adapter<MonAnAdapter.MonAnViewHol
         holder.btnCong.setGravity(Gravity.CENTER);
 
 
+        // Sự kiện nhấn nút +
         holder.btnCong.setOnClickListener(v -> {
+
+            SharedPreferences session = v.getContext().getSharedPreferences(
+                    "FOODIE_SESSION",
+                    android.content.Context.MODE_PRIVATE
+            );
+
+            boolean daDangNhap = session.getBoolean(
+                    "DANG_DANG_NHAP",
+                    false
+            );
+
+            if (!daDangNhap) {
+                Toast.makeText(
+                        v.getContext(),
+                        "Vui lòng đăng nhập để thêm món vào giỏ hàng!",
+                        Toast.LENGTH_SHORT
+                ).show();
+
+                Intent intent = new Intent(
+                        v.getContext(),
+                        DangNhapActivity.class
+                );
+
+                v.getContext().startActivity(intent);
+                return;
+            }
+
+            if (suKienClick != null) {
+                suKienClick.onClick(monAn);
+            }
+        });
+
+// Nhấn vào món ăn vẫn xem chi tiết bình thường
+        holder.itemView.setOnClickListener(v -> {
             if (suKienClick != null) {
                 suKienClick.onClick(monAn);
             }

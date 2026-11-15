@@ -192,34 +192,39 @@
     <!-- BOTTOM NAVIGATION -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="80dp"
         android:orientation="horizontal"
         android:gravity="center"
         android:background="#FFFFFF"
         android:elevation="5dp">
 
+        <!-- Trang chu -->
         <LinearLayout
             android:id="@+id/navTrangChu"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_margin="6dp"
             android:orientation="vertical"
             android:gravity="center">
 
             <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:src="@drawable/ic_nav_home"
+                android:scaleType="fitCenter"
                 android:contentDescription="Trang chủ" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Trang chủ"
-                android:textSize="10sp"
-                android:textColor="#777777" />
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
         </LinearLayout>
 
+        <!-- Thuc don -->
         <LinearLayout
             android:id="@+id/navThucDon"
             android:layout_width="0dp"
@@ -230,20 +235,22 @@
             android:background="@drawable/bg_nav_selected">
 
             <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:src="@drawable/ic_nav_thucdon"
+                android:scaleType="fitCenter"
                 android:contentDescription="Thực đơn" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Thực đơn"
-                android:textSize="10sp"
-                android:textStyle="bold"
-                android:textColor="#D71920" />
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
         </LinearLayout>
 
+        <!-- Gio hang -->
         <LinearLayout
             android:id="@+id/navGioHang"
             android:layout_width="0dp"
@@ -253,19 +260,22 @@
             android:gravity="center">
 
             <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:src="@drawable/ic_gio_hang"
+                android:scaleType="fitCenter"
                 android:contentDescription="Giỏ hàng" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Giỏ hàng"
-                android:textSize="10sp"
-                android:textColor="#777777" />
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
         </LinearLayout>
 
+        <!-- Don hang -->
         <LinearLayout
             android:id="@+id/navDonHang"
             android:layout_width="0dp"
@@ -275,19 +285,22 @@
             android:gravity="center">
 
             <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:src="@drawable/ic_nav_donhang"
+                android:scaleType="fitCenter"
                 android:contentDescription="Đơn hàng" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Đơn hàng"
-                android:textSize="10sp"
-                android:textColor="#777777" />
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
         </LinearLayout>
 
+        <!-- Tai khoan -->
         <LinearLayout
             android:id="@+id/navTaiKhoan"
             android:layout_width="0dp"
@@ -297,17 +310,19 @@
             android:gravity="center">
 
             <ImageView
-                android:layout_width="23dp"
-                android:layout_height="23dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:src="@drawable/ic_nav_taikhoan"
+                android:scaleType="fitCenter"
                 android:contentDescription="Tài khoản" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tài khoản"
-                android:textSize="10sp"
-                android:textColor="#777777" />
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
         </LinearLayout>
 
     </LinearLayout>

@@ -1,4 +1,3 @@
-
 package com.example.btl_ltadr;
 
 import android.os.Bundle;
@@ -10,6 +9,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class DangKyActivity extends AppCompatActivity {
 
@@ -40,13 +42,10 @@ public class DangKyActivity extends AppCompatActivity {
         btnHoanThanhDangKy.setOnClickListener(v -> {
 
             String ten = edtTenNguoiNhan.getText().toString().trim();
-            String soDienThoai = edtSoDienThoaiDangKy
-                    .getText().toString().trim();
+            String soDienThoai = edtSoDienThoaiDangKy.getText().toString().trim();
 
             if (ten.isEmpty()) {
-                edtTenNguoiNhan.setError(
-                        "Vui lòng nhập tên người nhận"
-                );
+                edtTenNguoiNhan.setError("Vui lòng nhập tên người nhận");
                 edtTenNguoiNhan.requestFocus();
                 return;
             }
@@ -59,30 +58,63 @@ public class DangKyActivity extends AppCompatActivity {
                 return;
             }
 
-            // Lưu thông tin khách hàng
-            SharedPreferences preferences =
-                    getSharedPreferences("FOODIE_DATA", MODE_PRIVATE);
+            SharedPreferences preferences = getSharedPreferences(
+                    "FOODIE_DATA",
+                    MODE_PRIVATE
+            );
 
-            preferences.edit()
-                    .putString("TEN_KHACH_HANG", ten)
-                    .putString("SO_DIEN_THOAI", soDienThoai)
-                    .apply();
+            String duLieuCu = preferences.getString("DANH_SACH_TAI_KHOAN", "[]");
 
-            // Trả thông tin về màn hình trước
-            Intent intent = new Intent();
+            try {
+                JSONArray danhSach = new JSONArray(duLieuCu);
 
-            intent.putExtra("TEN_NGUOI_NHAN", ten);
-            intent.putExtra("TEN_KHACH_HANG", ten);
-            intent.putExtra("SO_DIEN_THOAI", soDienThoai);
+                // Kiểm tra số điện thoại đã đăng ký
+                for (int i = 0; i < danhSach.length(); i++) {
+                    JSONObject taiKhoan = danhSach.getJSONObject(i);
 
-            Toast.makeText(
-                    this,
-                    "Đăng ký thông tin thành công!",
-                    Toast.LENGTH_SHORT
-            ).show();
+                    if (soDienThoai.equals(taiKhoan.optString("SO_DIEN_THOAI"))) {
+                        Toast.makeText(
+                                this,
+                                "Số điện thoại đã được đăng ký!",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                        return;
+                    }
+                }
 
-            setResult(RESULT_OK, intent);
-            finish();
+                // Thêm tài khoản mới
+                JSONObject taiKhoanMoi = new JSONObject();
+                taiKhoanMoi.put("TEN_KHACH_HANG", ten);
+                taiKhoanMoi.put("SO_DIEN_THOAI", soDienThoai);
+
+                danhSach.put(taiKhoanMoi);
+
+                preferences.edit()
+                        .putString("DANH_SACH_TAI_KHOAN", danhSach.toString())
+                        .apply();
+
+                Intent intent = new Intent();
+                intent.putExtra("TEN_NGUOI_NHAN", ten);
+                intent.putExtra("TEN_KHACH_HANG", ten);
+                intent.putExtra("SO_DIEN_THOAI", soDienThoai);
+
+                Toast.makeText(
+                        this,
+                        "Đăng ký thông tin thành công!",
+                        Toast.LENGTH_SHORT
+                ).show();
+
+                setResult(RESULT_OK, intent);
+                finish();
+
+            } catch (Exception e) {
+                Toast.makeText(
+                        this,
+                        "Không thể lưu thông tin tài khoản!",
+                        Toast.LENGTH_SHORT
+                ).show();
+            }
         });
     }
+
 }
