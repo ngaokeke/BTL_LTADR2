@@ -10,45 +10,44 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import android.graphics.drawable.GradientDrawable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
+import android.content.SharedPreferences;
 
 public class ChiTietMonAnActivity extends AppCompatActivity {
-
     private ImageView imgHinhAnh;
-
     private TextView btnQuayLai;
+    private TextView btnYeuThich;
+    private TextView txtTietKiem;
+    private boolean daYeuThich = false;
     private TextView txtTenMonAn;
     private TextView txtGiaMonAn;
     private TextView txtGiaCu;
     private TextView txtMoTa;
-
     private TextView btnGiamSoLuong;
     private TextView btnTangSoLuong;
     private TextView txtSoLuong;
     private TextView btnThemGioHang;
-
     private LinearLayout llNhomTuyChon;
-
     private MonAn monAn;
-
     private int soLuongCombo = 1;
-
     private HashMap<TuyChonMon, Integer> soLuongTuyChon =
             new HashMap<>();
-
     private DecimalFormat dinhDangTien =
             new DecimalFormat("#,###");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.chitiet_monan_activity);
+        setContentView(R.layout.activity_chitietmonan);
 
         anhXa();
 
@@ -78,6 +77,8 @@ public class ChiTietMonAnActivity extends AppCompatActivity {
         imgHinhAnh = findViewById(R.id.imgHinhAnh);
 
         btnQuayLai = findViewById(R.id.btnQuayLai);
+        btnYeuThich = findViewById(R.id.btnYeuThich);
+        txtTietKiem = findViewById(R.id.txtTietKiem);
 
         txtTenMonAn = findViewById(R.id.txtTenMonAn);
         txtGiaMonAn = findViewById(R.id.txtGiaMonAn);
@@ -139,6 +140,9 @@ public class ChiTietMonAnActivity extends AppCompatActivity {
         if (monAn.getHinhAnh() != 0) {
             imgHinhAnh.setImageResource(monAn.getHinhAnh());
         }
+        SharedPreferences prefs = getSharedPreferences("MonAnYeuThich", MODE_PRIVATE);
+        daYeuThich = prefs.getBoolean("fav_" + monAn.getMaMonAn(), false);
+        capNhatIconYeuThich();
     }
 
     // KHỞI TẠO SỐ LƯỢNG MẶC ĐỊNH
@@ -206,7 +210,8 @@ public class ChiTietMonAnActivity extends AppCompatActivity {
 
             TextView txtTenNhom = new TextView(this);
 
-            txtTenNhom.setText(nhom.getTenNhom());
+            txtTenNhom.setText(nhom.getTenNhom().toUpperCase());
+            txtTenNhom.setTextSize(16);
             txtTenNhom.setTextSize(14);
             txtTenNhom.setTextColor(Color.BLACK);
             txtTenNhom.setTypeface(null, Typeface.BOLD);
@@ -284,102 +289,77 @@ public class ChiTietMonAnActivity extends AppCompatActivity {
     }
 
     // TẠO HÀNG TÙY CHỌN
-    private LinearLayout taoDongTuyChon(
-            NhomTuyChon nhom,
-            TuyChonMon tuyChon
-    ) {
+    private LinearLayout taoDongTuyChon(NhomTuyChon nhom, TuyChonMon tuyChon) {
+        int soLuong = laySoLuong(tuyChon);
 
         LinearLayout dong = new LinearLayout(this);
+        dong.setOrientation(LinearLayout.HORIZONTAL);
+        dong.setGravity(Gravity.CENTER_VERTICAL);
+        dong.setMinimumHeight(dp(42));
+        dong.setPadding(0, dp(7), 0, dp(7));
+        dong.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        ));
 
-        dong.setOrientation(
-                LinearLayout.HORIZONTAL
-        );
+        // 1. SỐ LƯỢNG
+        TextView txtSoLuongDong = new TextView(this);
+        txtSoLuongDong.setTextSize(14);
+        txtSoLuongDong.setWidth(dp(34));
+        capNhatTextSoLuong(txtSoLuongDong, tuyChon);
 
-        dong.setGravity(
-                Gravity.CENTER_VERTICAL
-        );
-
-        dong.setPadding(
-                dp(5),
-                0,
-                dp(5),
-                0
-        );
-
-        dong.setLayoutParams(
-                new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        dp(38)
-                )
-        );
-
-        // SỐ LƯỢNG
-        TextView txtSoLuong = new TextView(this);
-
-        txtSoLuong.setTextSize(11);
-        txtSoLuong.setTextColor(Color.BLACK);
-        txtSoLuong.setWidth(dp(28));
-
-        // TÊN MÓN
+        // 2. TÊN MÓN
         TextView txtTen = new TextView(this);
+        txtTen.setText(tuyChon.getTenTuyChon());
+        txtTen.setTextSize(15);
+        txtTen.setTextColor(Color.rgb(34, 34, 34));
 
-        txtTen.setText(
-                tuyChon.getTenTuyChon()
+        LinearLayout.LayoutParams tenParams = new LinearLayout.LayoutParams(
+                0, LinearLayout.LayoutParams.WRAP_CONTENT, 1
         );
+        tenParams.rightMargin = dp(8);
 
-        txtTen.setTextSize(12);
-        txtTen.setTextColor(Color.BLACK);
-
-        LinearLayout.LayoutParams tenParams =
-                new LinearLayout.LayoutParams(
-                        0,
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        1
-                );
-
-        // GIÁ THÊM
+        // 3. GIÁ THÊM
         TextView txtGiaThem = new TextView(this);
+        txtGiaThem.setText("+ " + dinhDangTien.format(tuyChon.getGiaThem()) + " đ");
+        txtGiaThem.setTextSize(13);
+        txtGiaThem.setTextColor(Color.rgb(110, 110, 110));
 
-        if (tuyChon.getGiaThem() > 0) {
+        // 4. NÚT TRÒN DẤU X MÀU XÁM ĐỂ HỦY CHỌN MÓN NÀY (CHỈ HIỆN KHI > 0)
+        TextView btnXoaTuyChon = new TextView(this);
+        btnXoaTuyChon.setText("✕");
+        btnXoaTuyChon.setTextSize(11);
+        btnXoaTuyChon.setTextColor(Color.WHITE);
+        btnXoaTuyChon.setTypeface(null, Typeface.BOLD);
+        btnXoaTuyChon.setGravity(Gravity.CENTER);
 
-            txtGiaThem.setText(
-                    "+ " + dinhDangTien.format(
-                            tuyChon.getGiaThem()
-                    ) + " đ"
-            );
+        GradientDrawable bgXoa = new GradientDrawable();
+        bgXoa.setShape(GradientDrawable.OVAL);
+        bgXoa.setColor(Color.rgb(185, 185, 185));
+        btnXoaTuyChon.setBackground(bgXoa);
 
-        } else {
-            txtGiaThem.setText("");
-        }
+        LinearLayout.LayoutParams xoaParams = new LinearLayout.LayoutParams(dp(20), dp(20));
+        xoaParams.leftMargin = dp(10);
+        btnXoaTuyChon.setVisibility(soLuong > 0 ? View.VISIBLE : View.GONE);
 
-        txtGiaThem.setTextSize(11);
-        txtGiaThem.setTextColor(Color.DKGRAY);
+        btnXoaTuyChon.setOnClickListener(v -> {
+            soLuongTuyChon.put(tuyChon, 0);
+            hienThiNhomTuyChon();
+            capNhatTongTien();
+        });
 
-        dong.addView(txtSoLuong);
+        dong.addView(txtSoLuongDong);
         dong.addView(txtTen, tenParams);
         dong.addView(txtGiaThem);
+        dong.addView(btnXoaTuyChon, xoaParams);
 
-        capNhatTextSoLuong(
-                txtSoLuong,
-                tuyChon
-        );
-
-        // NHẤN VÀO CẢ HÀNG ĐỂ CHỌN
-        dong.setOnClickListener(v -> {
-
-            xuLyChonTuyChon(
-                    nhom,
-                    tuyChon
-            );
-
-        });
+        // NHẤN VÀO HÀNG ĐỂ CHỌN THÊM
+        dong.setOnClickListener(v -> xuLyChonTuyChon(nhom, tuyChon));
 
         return dong;
     }
 
     // XỬ LÝ KHI NHẤN VÀO MỘT LỰA CHỌN
-
-
     private void xuLyChonTuyChon(
             NhomTuyChon nhom,
             TuyChonMon tuyChon
@@ -434,15 +414,17 @@ public class ChiTietMonAnActivity extends AppCompatActivity {
         return soLuong == null ? 0 : soLuong;
     }
 
-    // CẬP NHẬT SỐ LƯỢNG TRÊN GIAO DIỆN
-    private void capNhatTextSoLuong(
-            TextView txt,
-            TuyChonMon tuyChon
-    ) {
-
-        txt.setText(
-                "x" + laySoLuong(tuyChon)
-        );
+    // CẬP NHẬT SỐ LƯỢNG VÀ ĐỔI MÀU ĐỎ TRÊN GIAO DIỆN
+    private void capNhatTextSoLuong(TextView txt, TuyChonMon tuyChon) {
+        int sl = laySoLuong(tuyChon);
+        txt.setText("x" + sl);
+        if (sl > 0) {
+            txt.setTextColor(Color.rgb(215, 25, 32));
+            txt.setTypeface(null, Typeface.BOLD);
+        } else {
+            txt.setTextColor(Color.rgb(175, 175, 175));
+            txt.setTypeface(null, Typeface.NORMAL);
+        }
     }
 
     // TÍNH TỔNG SỐ LƯỢNG TRONG MỘT NHÓM
@@ -485,19 +467,31 @@ public class ChiTietMonAnActivity extends AppCompatActivity {
 
     // CẬP NHẬT TỔNG TIỀN
     private void capNhatTongTien() {
+        int tongTien = tinhGiaMotCombo() * soLuongCombo;
 
-        int tongTien =
-                tinhGiaMotCombo() * soLuongCombo;
-
-        txtSoLuong.setText(
-                String.valueOf(soLuongCombo)
-        );
+        txtSoLuong.setText(String.valueOf(soLuongCombo));
 
         btnThemGioHang.setText(
-                "Thêm giỏ hàng: " +
-                        dinhDangTien.format(tongTien) +
-                        " đ"
+                "Thêm giỏ hàng: " + dinhDangTien.format(tongTien) + " đ"
         );
+
+        int tietKiemMotPhan = Math.max(0, monAn.getGiaCu() - monAn.getGiaMonAn());
+        int tongTietKiem = tietKiemMotPhan * soLuongCombo;
+
+        if (tongTietKiem > 0) {
+            txtTietKiem.setVisibility(View.VISIBLE);
+            String soTienStr = dinhDangTien.format(tongTietKiem) + " đ";
+            String fullText = "Bạn tiết kiệm được " + soTienStr + " sau khi giảm giá.";
+            SpannableString spannable = new SpannableString(fullText);
+
+            int start = fullText.indexOf(soTienStr);
+            int end = start + soTienStr.length();
+            spannable.setSpan(new ForegroundColorSpan(Color.rgb(215, 25, 32)), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannable.setSpan(new StyleSpan(Typeface.BOLD), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            txtTietKiem.setText(spannable);
+        } else {
+            txtTietKiem.setVisibility(View.GONE);
+        }
     }
 
     // KIỂM TRA SỐ LƯỢNG TRƯỚC KHI THÊM GIỎ HÀNG
@@ -548,6 +542,20 @@ public class ChiTietMonAnActivity extends AppCompatActivity {
         // QUAY LẠI
         btnQuayLai.setOnClickListener(v -> finish());
 
+        // YÊU THÍCH
+        btnYeuThich.setOnClickListener(v -> {
+            daYeuThich = !daYeuThich;
+            SharedPreferences prefs = getSharedPreferences("MonAnYeuThich", MODE_PRIVATE);
+            prefs.edit().putBoolean("fav_" + monAn.getMaMonAn(), daYeuThich).apply();
+            capNhatIconYeuThich();
+
+            Toast.makeText(
+                    this,
+                    daYeuThich ? "Đã thêm vào yêu thích" : "Đã bỏ yêu thích",
+                    Toast.LENGTH_SHORT
+            ).show();
+        });
+
         // GIẢM SỐ LƯỢNG COMBO
         btnGiamSoLuong.setOnClickListener(v -> {
 
@@ -593,6 +601,16 @@ public class ChiTietMonAnActivity extends AppCompatActivity {
             // Quay về trang Thực đơn
             finish();
         });
+    }
+
+    private void capNhatIconYeuThich() {
+        if (daYeuThich) {
+            btnYeuThich.setText("♥");
+            btnYeuThich.setTextColor(Color.rgb(215, 25, 32));
+        } else {
+            btnYeuThich.setText("♡");
+            btnYeuThich.setTextColor(Color.rgb(51, 51, 51));
+        }
     }
 
     // ĐỔI DP SANG PX
