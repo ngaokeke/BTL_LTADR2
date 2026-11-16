@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<resources>
+    <style name="AdminDonHangTab" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:paddingVertical">0dp</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:backgroundTint">@null</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">34dp</item>
+        <item name="android:layout_marginEnd">7dp</item>
+        <item name="android:paddingHorizontal">14dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:fontFamily">@font/be_vietnam_pro</item>
+        <item name="fontFamily">@font/be_vietnam_pro</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/admin_don_hang_tab_text</item>
+        <item name="android:background">@drawable/bg_admin_don_hang_tab</item>
+        <item name="android:elevation">1dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+    <style name="AdminDonHangDetail">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">18dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:drawablePadding">6dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#111111</item>
+        <item name="android:fontFamily">@font/be_vietnam_pro</item>
+        <item name="fontFamily">@font/be_vietnam_pro</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+</resources>
