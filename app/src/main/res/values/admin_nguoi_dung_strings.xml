@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="admin_nguoi_dung_title">Quản lý người dùng</string>
+    <string name="admin_nguoi_dung_back">Quay lại</string>
+    <string name="admin_nguoi_dung_add">Thêm người dùng</string>
+    <string name="admin_nguoi_dung_search">Tìm theo tên, SĐT…</string>
+    <string name="admin_nguoi_dung_tab_all">Tất cả (2.356)</string>
+    <string name="admin_nguoi_dung_tab_member">Thành viên (1.892)</string>
+    <string name="admin_nguoi_dung_tab_vip">VIP (384)</string>
+    <string name="admin_nguoi_dung_member">MEMBER</string>
+    <string name="admin_nguoi_dung_vip">VIP</string>
+    <string name="admin_nguoi_dung_name_1">Nguyễn Văn A</string>
+    <string name="admin_nguoi_dung_name_2">Trần Thị B</string>
+    <string name="admin_nguoi_dung_name_3">Lê Văn C</string>
+    <string name="admin_nguoi_dung_name_4">Phạm Thị D</string>
+    <string name="admin_nguoi_dung_name_5">Hoàng Gia E</string>
+    <string name="admin_nguoi_dung_name_6">Vũ Minh K</string>
+    <string name="admin_nguoi_dung_name_7">Đặng Thùy Linh</string>
+    <string name="admin_nguoi_dung_name_8">Bùi Anh Tuấn</string>
+    <string name="admin_nguoi_dung_phone_1">0372629121</string>
+    <string name="admin_nguoi_dung_phone_2">0987654321</string>
+    <string name="admin_nguoi_dung_phone_3">0912345678</string>
+    <string name="admin_nguoi_dung_phone_4">0909123456</string>
+    <string name="admin_nguoi_dung_phone_5">0938777666</string>
+    <string name="admin_nguoi_dung_phone_6">0356777889</string>
+    <string name="admin_nguoi_dung_phone_7">0977889900</string>
+    <string name="admin_nguoi_dung_phone_8">0365566778</string>
+</resources>

@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardAdminNguoiDung1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="58dp"
+    android:layout_marginBottom="6dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingHorizontal="14dp"
+    android:paddingVertical="8dp"
+    android:background="@drawable/bg_admin_nguoi_dung_card">
+    <ImageView
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:src="@drawable/ic_admin_user_avatar"
+        android:importantForAccessibility="no"/>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/txtAdminNguoiDungTen1" style="@style/AdminNguoiDungText"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:text="@string/admin_nguoi_dung_name_1"/>
+        <TextView
+            android:id="@+id/txtAdminNguoiDungSdt1" style="@style/AdminNguoiDungText"
+            android:layout_marginTop="3dp"
+            android:textColor="#4E4E4E"
+            android:text="@string/admin_nguoi_dung_phone_1"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/txtAdminNguoiDungHang1" style="@style/AdminNguoiDungBadge"
+        android:text="@string/admin_nguoi_dung_member"/>
+</LinearLayout>
