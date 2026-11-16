@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="admin_ctdh_title">Chi tiết đơn hàng</string>
+    <string name="admin_ctdh_back">Quay lại</string>
+    <string name="admin_ctdh_code">#FD12845</string>
+    <string name="admin_ctdh_date">11:24 - 08/01/2025</string>
+    <string name="admin_ctdh_status">Chờ xác nhận</string>
+    <string name="admin_ctdh_customer_title">Thông tin khách hàng</string>
+    <string name="admin_ctdh_customer_name">Nguyễn Văn A</string>
+    <string name="admin_ctdh_customer_phone">0372629121</string>
+    <string name="admin_ctdh_call">Gọi cho khách hàng</string>
+    <string name="admin_ctdh_delivery_title">Thông tin giao hàng</string>
+    <string name="admin_ctdh_address">96 Định Công, Hoàng Mai, Hà Nội</string>
+    <string name="admin_ctdh_delivery_label">Giao hàng:</string>
+    <string name="admin_ctdh_delivery_type">Giao hỏa tốc</string>
+    <string name="admin_ctdh_store_title">Cửa hàng</string>
+    <string name="admin_ctdh_store">ĐỊNH CÔNG</string>
+    <string name="admin_ctdh_store_detail">Xem cửa hàng Định Công</string>
+    <string name="admin_ctdh_food_title">Danh sách món (3)</string>
+    <string name="admin_ctdh_food_1">Yêu thương 1</string>
+    <string name="admin_ctdh_food_1_options">2x Pepsi (S)</string>
+    <string name="admin_ctdh_food_1_price">145.000 đ</string>
+    <string name="admin_ctdh_food_2">Combo Burger Tôm</string>
+    <string name="admin_ctdh_food_2_price">85.000 đ</string>
+    <string name="admin_ctdh_food_3">Hạnh phúc 2</string>
+    <string name="admin_ctdh_food_3_price">280.000 đ</string>
+    <string name="admin_ctdh_quantity">x1</string>
+    <string name="admin_ctdh_total_label">Tổng cộng</string>
+    <string name="admin_ctdh_total">510.000 đ</string>
+    <string name="admin_ctdh_reject">Từ chối</string>
+    <string name="admin_ctdh_confirm">Xác nhận</string>
+</resources>

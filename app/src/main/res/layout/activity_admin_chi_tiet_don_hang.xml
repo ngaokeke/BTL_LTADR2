@@ -1,0 +1,377 @@
+<?xml version="1.0" ?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/adminChiTietDonHangRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_admin_chi_tiet_don_hang">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="12dp"
+        android:background="#C91F29">
+        <ImageButton
+            android:id="@+id/btnAdminCtdhQuayLai"
+            android:layout_width="40dp"
+            android:layout_height="48dp"
+            android:padding="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_back_white"
+            android:contentDescription="@string/admin_ctdh_back"/>
+        <TextView
+            android:id="@+id/txtAdminCtdhTitle" style="@style/AdminCtdhText"
+            android:text="@string/admin_ctdh_title"
+            android:layout_marginStart="12dp"
+            android:textSize="21sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"/>
+    </LinearLayout>
+    <ScrollView
+        android:id="@+id/scrollAdminChiTietDonHang"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:clipToPadding="false">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="9dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="8dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_admin_ctdh_card"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="8dp"
+                android:minHeight="58dp">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/txtAdminCtdhMaDon" style="@style/AdminCtdhHeading"
+                        android:text="@string/admin_ctdh_code"
+                        android:textSize="21sp"/>
+                    <TextView
+                        android:id="@+id/txtAdminCtdhNgayDat" style="@style/AdminCtdhText"
+                        android:text="@string/admin_ctdh_date"
+                        android:layout_marginTop="3dp"
+                        android:textColor="#505050"/>
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/txtAdminCtdhTrangThai" style="@style/AdminCtdhHeading"
+                    android:text="@string/admin_ctdh_status"
+                    android:textColor="#995000"
+                    android:background="@drawable/bg_admin_don_hang_cho_xac_nhan"
+                    android:paddingHorizontal="13dp"
+                    android:paddingVertical="5dp"/>
+            </LinearLayout>
+            <LinearLayout style="@style/AdminCtdhCard" android:orientation="vertical" android:layout_marginTop="8dp">
+                <TextView
+                    android:id="@+id/txtAdminCtdhKhachHangTitle" style="@style/AdminCtdhHeading"
+                    android:text="@string/admin_ctdh_customer_title"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="5dp">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:minHeight="25dp">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_admin_ctdh_customer"
+                                android:importantForAccessibility="no"/>
+                            <TextView
+                                android:id="@+id/txtAdminCtdhTenKhach" style="@style/AdminCtdhText"
+                                android:text="@string/admin_ctdh_customer_name"
+                                android:layout_marginStart="16dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:minHeight="25dp">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_admin_ctdh_phone"
+                                android:importantForAccessibility="no"/>
+                            <TextView
+                                android:id="@+id/txtAdminCtdhSoDienThoai" style="@style/AdminCtdhText"
+                                android:text="@string/admin_ctdh_customer_phone"
+                                android:layout_marginStart="16dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <ImageButton
+                        android:id="@+id/btnAdminCtdhGoiKhach"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:padding="9dp"
+                        android:background="@drawable/bg_admin_ctdh_call"
+                        android:src="@drawable/ic_admin_ctdh_call"
+                        android:contentDescription="@string/admin_ctdh_call"/>
+                </LinearLayout>
+                <View style="@style/AdminCtdhDivider" android:layout_marginVertical="8dp"/>
+                <TextView
+                    android:id="@+id/txtAdminCtdhGiaoHangTitle" style="@style/AdminCtdhHeading"
+                    android:text="@string/admin_ctdh_delivery_title"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:minHeight="25dp">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_admin_delivery"
+                        android:importantForAccessibility="no"/>
+                    <TextView
+                        android:id="@+id/txtAdminCtdhDiaChi" style="@style/AdminCtdhText"
+                        android:text="@string/admin_ctdh_address"
+                        android:layout_marginStart="16dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:minHeight="25dp">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_admin_ctdh_delivery_note"
+                        android:importantForAccessibility="no"/>
+                    <TextView
+                        android:id="@+id/txtAdminCtdhGiaoHangLabel" style="@style/AdminCtdhText"
+                        android:text="@string/admin_ctdh_delivery_label"
+                        android:layout_marginStart="16dp"/>
+                    <TextView
+                        android:id="@+id/txtAdminCtdhLoaiGiaoHang" style="@style/AdminCtdhText"
+                        android:text="@string/admin_ctdh_delivery_type"
+                        android:layout_marginStart="8dp"
+                        android:textColor="#C9131D"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <View style="@style/AdminCtdhDivider" android:layout_marginVertical="8dp"/>
+                <TextView
+                    android:id="@+id/txtAdminCtdhCuaHangTitle" style="@style/AdminCtdhHeading"
+                    android:text="@string/admin_ctdh_store_title"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="6dp">
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_admin_cua_hang"
+                        android:importantForAccessibility="no"/>
+                    <TextView
+                        android:id="@+id/txtAdminCtdhCuaHang" style="@style/AdminCtdhHeading"
+                        android:text="@string/admin_ctdh_store"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"/>
+                    <ImageButton
+                        android:id="@+id/btnAdminCtdhCuaHang"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:padding="6dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_chevron"
+                        android:contentDescription="@string/admin_ctdh_store_detail"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout style="@style/AdminCtdhCard" android:orientation="vertical" android:layout_marginTop="10dp">
+                <TextView
+                    android:id="@+id/txtAdminCtdhDanhSachMonTitle" style="@style/AdminCtdhHeading"
+                    android:text="@string/admin_ctdh_food_title"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:minHeight="55dp"
+                    android:layout_marginTop="3dp">
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:src="@drawable/yeu_thuong1"
+                        android:importantForAccessibility="no"
+                        android:layout_height="54dp"
+                        android:scaleType="fitCenter"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/txtAdminCtdhTenMon1" style="@style/AdminCtdhHeading"
+                            android:text="@string/admin_ctdh_food_1"
+                            android:textSize="14sp"/>
+                        <TextView
+                            android:id="@+id/txtAdminCtdhTuyChon1" style="@style/AdminCtdhText"
+                            android:text="@string/admin_ctdh_food_1_options"
+                            android:textSize="12sp"
+                            android:textColor="#606060"
+                            android:layout_marginTop="4dp"/>
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/txtAdminCtdhSoLuong1" style="@style/AdminCtdhText"
+                        android:text="@string/admin_ctdh_quantity"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="10dp"/>
+                    <TextView
+                        android:id="@+id/txtAdminCtdhGiaMon1" style="@style/AdminCtdhHeading"
+                        android:text="@string/admin_ctdh_food_1_price"
+                        android:layout_width="88dp"
+                        android:gravity="end"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+                <View style="@style/AdminCtdhDivider" android:background="#EEEEEE"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:minHeight="55dp"
+                    android:layout_marginTop="3dp">
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:src="@drawable/combo_burger_tom"
+                        android:importantForAccessibility="no"
+                        android:layout_height="54dp"
+                        android:scaleType="fitCenter"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/txtAdminCtdhTenMon2" style="@style/AdminCtdhHeading"
+                            android:text="@string/admin_ctdh_food_2"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/txtAdminCtdhSoLuong2" style="@style/AdminCtdhText"
+                        android:text="@string/admin_ctdh_quantity"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="10dp"/>
+                    <TextView
+                        android:id="@+id/txtAdminCtdhGiaMon2" style="@style/AdminCtdhHeading"
+                        android:text="@string/admin_ctdh_food_2_price"
+                        android:layout_width="88dp"
+                        android:gravity="end"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+                <View style="@style/AdminCtdhDivider" android:background="#EEEEEE"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:minHeight="55dp"
+                    android:layout_marginTop="3dp">
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:src="@drawable/hanh_phuc2"
+                        android:importantForAccessibility="no"
+                        android:layout_height="54dp"
+                        android:scaleType="fitCenter"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="10dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/txtAdminCtdhTenMon3" style="@style/AdminCtdhHeading"
+                            android:text="@string/admin_ctdh_food_3"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/txtAdminCtdhSoLuong3" style="@style/AdminCtdhText"
+                        android:text="@string/admin_ctdh_quantity"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="10dp"/>
+                    <TextView
+                        android:id="@+id/txtAdminCtdhGiaMon3" style="@style/AdminCtdhHeading"
+                        android:text="@string/admin_ctdh_food_3_price"
+                        android:layout_width="88dp"
+                        android:gravity="end"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_admin_ctdh_card"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="7dp"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:id="@+id/txtAdminCtdhTongCongLabel" style="@style/AdminCtdhHeading"
+                    android:text="@string/admin_ctdh_total_label"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:id="@+id/txtAdminCtdhTongCong" style="@style/AdminCtdhHeading"
+                    android:text="@string/admin_ctdh_total"
+                    android:textSize="19sp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="16dp">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAdminCtdhTuChoi" style="@style/AdminCtdhAction"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/bg_admin_ctdh_reject"
+            android:text="@string/admin_ctdh_reject"
+            android:textColor="#CB111B"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAdminCtdhXacNhan" style="@style/AdminCtdhAction"
+            android:background="@drawable/bg_admin_ctdh_confirm"
+            android:text="@string/admin_ctdh_confirm"
+            android:textColor="#090909"/>
+    </LinearLayout>
+</LinearLayout>
