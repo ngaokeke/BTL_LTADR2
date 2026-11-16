@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="admin_thuc_don_title">Quản lý thực đơn</string>
+    <string name="admin_thuc_don_back">Quay lại</string>
+    <string name="admin_thuc_don_tab_all">Tất cả (28)</string>
+    <string name="admin_thuc_don_tab_best_seller">Bán chạy (6)</string>
+    <string name="admin_thuc_don_tab_combo">Combo (8)</string>
+    <string name="admin_thuc_don_name_1">Yêu thương 1</string>
+    <string name="admin_thuc_don_name_2">Yêu thương 2</string>
+    <string name="admin_thuc_don_name_3">Yêu thương 3</string>
+    <string name="admin_thuc_don_name_4">Hạnh phúc 1</string>
+    <string name="admin_thuc_don_name_5">Hạnh phúc 2</string>
+    <string name="admin_thuc_don_price_1">145.000 <u>đ</u></string>
+    <string name="admin_thuc_don_price_2">145.000 <u>đ</u></string>
+    <string name="admin_thuc_don_price_3">145.000 <u>đ</u></string>
+    <string name="admin_thuc_don_price_4">185.000 <u>đ</u></string>
+    <string name="admin_thuc_don_price_5">280.000 <u>đ</u></string>
+    <string name="admin_thuc_don_old_price_1"><strike>186.000 đ</strike></string>
+    <string name="admin_thuc_don_old_price_2"><strike>177.000 đ</strike></string>
+    <string name="admin_thuc_don_old_price_3"><strike>183.000 đ</strike></string>
+    <string name="admin_thuc_don_old_price_4"><strike>251.000 đ</strike></string>
+    <string name="admin_thuc_don_old_price_5"><strike>338.000 đ</strike></string>
+    <string name="admin_thuc_don_toggle_1">Bật hoặc tắt món Yêu thương 1</string>
+    <string name="admin_thuc_don_toggle_2">Bật hoặc tắt món Yêu thương 2</string>
+    <string name="admin_thuc_don_toggle_3">Bật hoặc tắt món Yêu thương 3</string>
+    <string name="admin_thuc_don_toggle_4">Bật hoặc tắt món Hạnh phúc 1</string>
+    <string name="admin_thuc_don_toggle_5">Bật hoặc tắt món Hạnh phúc 2</string>
+    <string name="admin_thuc_don_add">Thêm món</string>
+</resources>
