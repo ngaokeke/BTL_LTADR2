@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="admin_csm_title">Chỉnh sửa món</string>
+    <string name="admin_csm_back">Quay lại</string>
+    <string name="admin_csm_image">Ảnh món Yêu thương 1</string>
+    <string name="admin_csm_change_image">Thay đổi ảnh món</string>
+    <string name="admin_csm_name_label">Tên món <font color="#D71920">*</font></string>
+    <string name="admin_csm_name">Yêu thương 1</string>
+    <string name="admin_csm_category_label">Danh mục <font color="#D71920">*</font></string>
+    <string name="admin_csm_category">Món gà</string>
+    <string name="admin_csm_price_label">Giá bán <font color="#D71920">*</font></string>
+    <string name="admin_csm_price">145.000</string>
+    <string name="admin_csm_original_price_label">Giá gốc</string>
+    <string name="admin_csm_original_price">186.000</string>
+    <string name="admin_csm_currency"><u>đ</u></string>
+    <string name="admin_csm_description_label">Mô tả</string>
+    <string name="admin_csm_description">Combo gà rán, khoai tây và nước</string>
+    <string name="admin_csm_best_seller">Bán chạy</string>
+    <string name="admin_csm_available">Còn bán</string>
+    <string name="admin_csm_save">Lưu thay đổi</string>
+</resources>
