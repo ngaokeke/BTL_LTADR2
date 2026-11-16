@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardAdminUuDai1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="89dp"
+    android:layout_marginBottom="8dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@drawable/bg_admin_uu_dai_card"
+    android:elevation="1dp"
+    android:paddingHorizontal="14dp"
+    android:paddingVertical="10dp">
+    <ImageView
+        android:layout_width="44dp"
+        android:layout_height="34dp"
+        android:src="@drawable/ic_admin_uu_dai_ticket"
+        android:importantForAccessibility="no"/>
+    <View
+        android:layout_width="1dp"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="11dp"
+        android:background="#E0E0E0"/>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginEnd="5dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/txtAdminUuDaiMa1" style="@style/AdminUuDaiText"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="@string/admin_uu_dai_code_1"/>
+        <TextView
+            android:id="@+id/txtAdminUuDaiMoTa1" style="@style/AdminUuDaiText"
+            android:layout_marginTop="3dp"
+            android:text="@string/admin_uu_dai_description_1"/>
+        <TextView
+            android:id="@+id/txtAdminUuDaiHanSuDung1" style="@style/AdminUuDaiText"
+            android:layout_marginTop="7dp"
+            android:drawableStart="@drawable/ic_admin_calendar"
+            android:drawablePadding="6dp"
+            android:gravity="center_vertical"
+            android:text="@string/admin_uu_dai_expiry_1"/>
+    </LinearLayout>
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchAdminUuDai1"
+        android:layout_width="44dp"
+        android:layout_height="36dp"
+        android:checked="true"
+        android:padding="0dp"
+        android:thumb="@drawable/bg_admin_thuc_don_switch_thumb"
+        android:contentDescription="@string/admin_uu_dai_toggle_1"
+        app:track="@drawable/bg_admin_thuc_don_switch_track"
+        app:thumbTint="@null"
+        app:trackTint="@null"
+        app:switchMinWidth="44dp"
+        app:switchPadding="0dp"
+        app:thumbTextPadding="0dp"
+        app:showText="false"
+        app:splitTrack="false"/>
+</LinearLayout>
