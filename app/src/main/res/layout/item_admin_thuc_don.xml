@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardAdminThucDon1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="90dp"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/bg_admin_thuc_don_card"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingHorizontal="10dp"
+    android:paddingVertical="8dp">
+    <ImageView
+        android:id="@+id/imgAdminThucDon1"
+        android:layout_width="100dp"
+        android:layout_height="73dp"
+        android:layout_marginEnd="13dp"
+        android:src="@drawable/yeu_thuong1"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/admin_thuc_don_name_1"/>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginEnd="5dp">
+        <TextView
+            android:id="@+id/txtAdminThucDonTen1" style="@style/AdminThucDonText"
+            android:layout_width="match_parent"
+            android:textStyle="bold"
+            android:text="@string/admin_thuc_don_name_1"/>
+        <TextView
+            android:id="@+id/txtAdminThucDonGia1" style="@style/AdminThucDonText"
+            android:layout_marginTop="3dp"
+            android:textStyle="bold"
+            android:textColor="#E3131B"
+            android:text="@string/admin_thuc_don_price_1"/>
+        <TextView
+            android:id="@+id/txtAdminThucDonGiaCu1" style="@style/AdminThucDonText"
+            android:layout_marginTop="2dp"
+            android:textSize="14sp"
+            android:textColor="#A2A2A6"
+            android:text="@string/admin_thuc_don_old_price_1"/>
+    </LinearLayout>
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchAdminThucDon1"
+        android:layout_width="48dp"
+        android:layout_height="36dp"
+        android:padding="0dp"
+        android:checked="true"
+        android:thumb="@drawable/bg_admin_thuc_don_switch_thumb"
+        android:splitTrack="false"
+        android:contentDescription="@string/admin_thuc_don_toggle_1"
+        app:track="@drawable/bg_admin_thuc_don_switch_track"
+        app:thumbTint="@null"
+        app:trackTint="@null"
+        app:showText="false"
+        app:switchMinWidth="48dp"
+        app:thumbTextPadding="0dp"
+        app:switchPadding="0dp"
+        app:splitTrack="false"/>
+</LinearLayout>
