@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="admin_uu_dai_title">Quản lý ưu đãi</string>
+    <string name="admin_uu_dai_menu">Mở menu quản trị</string>
+    <string name="admin_uu_dai_notifications">Thông báo</string>
+    <string name="admin_uu_dai_tab_all">Tất cả (12)</string>
+    <string name="admin_uu_dai_tab_active">Đang áp dụng (6)</string>
+    <string name="admin_uu_dai_code_1">GIAM10</string>
+    <string name="admin_uu_dai_code_2">FREESHIP</string>
+    <string name="admin_uu_dai_code_3">COMBO20</string>
+    <string name="admin_uu_dai_code_4">THANHVIEN</string>
+    <string name="admin_uu_dai_code_5">TET2025</string>
+    <string name="admin_uu_dai_description_1">Giảm 10% cho đơn từ 200.000 <u>đ</u></string>
+    <string name="admin_uu_dai_description_2">Miễn phí vận chuyển (≤ 3 km)</string>
+    <string name="admin_uu_dai_description_3">Giảm 20.000 <u>đ</u> cho combo</string>
+    <string name="admin_uu_dai_description_4">Ưu đãi thành viên - giảm 15%</string>
+    <string name="admin_uu_dai_description_5">Giảm 25% cho đơn từ 300.000 <u>đ</u></string>
+    <string name="admin_uu_dai_expiry_1"><font color="#686868">HSD:</font> 31/01/2025</string>
+    <string name="admin_uu_dai_expiry_2"><font color="#686868">HSD:</font> 31/01/2025</string>
+    <string name="admin_uu_dai_expiry_3"><font color="#686868">HSD:</font> 15/02/2025</string>
+    <string name="admin_uu_dai_expiry_4"><font color="#686868">HSD:</font> 28/02/2025</string>
+    <string name="admin_uu_dai_expiry_5"><font color="#686868">HSD:</font> 10/02/2025</string>
+    <string name="admin_uu_dai_toggle_1">Bật hoặc tắt ưu đãi GIAM10</string>
+    <string name="admin_uu_dai_toggle_2">Bật hoặc tắt ưu đãi FREESHIP</string>
+    <string name="admin_uu_dai_toggle_3">Bật hoặc tắt ưu đãi COMBO20</string>
+    <string name="admin_uu_dai_toggle_4">Bật hoặc tắt ưu đãi THANHVIEN</string>
+    <string name="admin_uu_dai_toggle_5">Bật hoặc tắt ưu đãi TET2025</string>
+    <string name="admin_uu_dai_add">Thêm ưu đãi</string>
+</resources>
