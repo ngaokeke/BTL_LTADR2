@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_auth">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="@string/activity_gio_hang_36_text_3"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/be_vietnam_pro"
+        android:gravity="center"
+        android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/activity_uu_dai_tab_online_text_3"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:id="@+id/tabOnline" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/activity_uu_dai_tab_cua_hang_text_3"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:fontFamily="@font/be_vietnam_pro"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:id="@+id/tabCuaHang" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal">
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:id="@+id/indicatorOnline"
+            android:background="#FFFFFF" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:id="@+id/indicatorStore"
+            android:background="#FFFFFF" />
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:paddingHorizontal="19dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="19dp"
+                android:background="@drawable/bg_offer"
+                android:padding="12dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_uu_dai_txt_ma_uu_dai_text_4"
+                    android:textSize="11sp"
+                    android:textColor="#171717"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    android:textStyle="bold"
+                    android:id="@+id/txtMaUuDai" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_uu_dai_txt_thong_tin_uu_dai_text_4"
+                    android:textSize="11sp"
+                    android:textColor="#171717"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    android:layout_marginTop="22dp"
+                    android:textStyle="bold"
+                    android:id="@+id/txtThongTinUuDai" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_uu_dai_txt_han_su_dung_text_4"
+                    android:textSize="11sp"
+                    android:textColor="#171717"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    android:layout_alignParentBottom="true"
+                    android:textStyle="bold"
+                    android:id="@+id/txtHanSuDung" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_uu_dai_btn_chi_tiet_uu_dai_text_4"
+                    android:textSize="11sp"
+                    android:textColor="#171717"
+                    android:fontFamily="@font/be_vietnam_pro"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:textStyle="bold"
+                    android:id="@+id/btnChiTietUuDai" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="102dp"
+        layout="@layout/view_bottom_navigation"
+        android:id="@+id/boDieuHuong" />
+</LinearLayout>
