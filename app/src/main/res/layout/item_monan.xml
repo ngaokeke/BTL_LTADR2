@@ -54,12 +54,14 @@
 
     <TextView
         android:id="@+id/btnCong"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:gravity="center"
+        android:layout_gravity="center_vertical"
+        android:includeFontPadding="false"
         android:text="+"
         android:textColor="#FFFFFF"
-        android:textSize="23sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:background="@drawable/bg_nut_cong"
         android:clickable="true"

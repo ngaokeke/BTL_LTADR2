@@ -1,3 +1,4 @@
+
 package com.example.btl_ltadr;
 
 import android.Manifest;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
@@ -28,6 +30,7 @@ import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class GioHangActivity extends AppCompatActivity {
 
@@ -37,11 +40,11 @@ public class GioHangActivity extends AppCompatActivity {
 
     private TextView txtDiaChi;
     private TextView txtSuaDiaChi;
-
     private TextView txtTongTien;
     private TextView txtTamTinh;
     private TextView txtPhiVanChuyen;
     private TextView txtSoSanPham;
+    private TextView btnCoupon;
 
     private LinearLayout llDanhSachMon;
 
@@ -55,6 +58,11 @@ public class GioHangActivity extends AppCompatActivity {
 
     private int phiVanChuyen = 15000;
     private int giamGia = 0;
+
+    // SQLite ưu đãi
+    private DatabaseHelper databaseHelper;
+    private String maGiamGiaDangApDung = "";
+    private int phanTramGiamDangApDung = 0;
 
     private final DecimalFormat dinhDangTien =
             new DecimalFormat("#,###");
@@ -81,6 +89,9 @@ public class GioHangActivity extends AppCompatActivity {
 
         anhXa();
 
+        // Khởi tạo SQLite
+        databaseHelper = new DatabaseHelper(this);
+
         // Tạo kênh thông báo
         ThongBaoDonHang.taoKenhThongBao(this);
 
@@ -99,7 +110,7 @@ public class GioHangActivity extends AppCompatActivity {
         capNhatTongTien();
     }
 
-    // Ánh xạ các thành phần giao diện
+    // Ánh xạ giao diện
     private void anhXa() {
 
         btnQuayLai = findViewById(R.id.btnQuayLai);
@@ -114,6 +125,8 @@ public class GioHangActivity extends AppCompatActivity {
         txtPhiVanChuyen = findViewById(R.id.txtPhiVanChuyen);
         txtSoSanPham = findViewById(R.id.txtSoSanPham);
 
+        btnCoupon = findViewById(R.id.btnCoupon);
+
         llDanhSachMon = findViewById(R.id.llDanhSachMon);
 
         edtMaGiamGia = findViewById(R.id.edtMaGiamGia);
@@ -125,28 +138,118 @@ public class GioHangActivity extends AppCompatActivity {
         swDungCu = findViewById(R.id.swDungCu);
     }
 
-    // Xử lý sự kiện các nút
+    // Cài đặt sự kiện
     private void caiDatSuKien() {
 
-        // Quay lại
         btnQuayLai.setOnClickListener(v -> finish());
 
         // Sửa địa chỉ giao hàng
         txtSuaDiaChi.setOnClickListener(v -> {
-
             Intent intent = new Intent(
                     GioHangActivity.this,
                     DiaChiGiaoHangActivity.class
             );
-
             startActivity(intent);
         });
+
+        // Mở danh sách ưu đãi
+        btnCoupon.setOnClickListener(v -> hienThiUuDai());
 
         // Áp dụng mã giảm giá
         btnApDungMa.setOnClickListener(v -> apDungMaGiamGia());
 
         // Đặt hàng
         btnDatHang.setOnClickListener(v -> datHang());
+    }
+
+    // Hiển thị danh sách ưu đãi từ SQLite
+    private void hienThiUuDai() {
+
+        ArrayList<UuDai> danhSachUuDai =
+                databaseHelper.layDanhSachUuDai();
+
+        if (danhSachUuDai == null || danhSachUuDai.isEmpty()) {
+            Toast.makeText(
+                    this,
+                    "Hiện chưa có chương trình ưu đãi",
+                    Toast.LENGTH_SHORT
+            ).show();
+            return;
+        }
+
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setPadding(dp(20), dp(10), dp(20), dp(10));
+
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle("Ưu đãi dành cho bạn")
+                .setView(layout)
+                .setNegativeButton("Đóng", null)
+                .create();
+
+        for (UuDai uuDai : danhSachUuDai) {
+
+            LinearLayout khung = new LinearLayout(this);
+            khung.setOrientation(LinearLayout.VERTICAL);
+            khung.setPadding(dp(12), dp(12), dp(12), dp(12));
+            khung.setBackgroundColor(Color.rgb(248, 248, 248));
+
+            LinearLayout.LayoutParams params =
+                    new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                    );
+
+            params.setMargins(0, dp(5), 0, dp(10));
+            khung.setLayoutParams(params);
+
+            TextView txtTen = new TextView(this);
+            txtTen.setText(uuDai.getTenUuDai());
+            txtTen.setTextSize(18);
+            txtTen.setTextColor(Color.RED);
+            txtTen.setTypeface(null, Typeface.BOLD);
+
+            TextView txtMa = new TextView(this);
+            txtMa.setText("Mã ưu đãi: " + uuDai.getMaUuDai());
+            txtMa.setTextSize(14);
+            txtMa.setTextColor(Color.DKGRAY);
+
+            TextView txtMoTa = new TextView(this);
+            txtMoTa.setText(uuDai.getMoTa());
+            txtMoTa.setTextSize(14);
+            txtMoTa.setTextColor(Color.DKGRAY);
+            txtMoTa.setPadding(0, dp(5), 0, dp(5));
+
+            TextView txtPhanTram = new TextView(this);
+            txtPhanTram.setText(
+                    "Giảm " + uuDai.getPhanTramGiam() + "%"
+            );
+            txtPhanTram.setTextSize(16);
+            txtPhanTram.setTextColor(Color.RED);
+            txtPhanTram.setTypeface(null, Typeface.BOLD);
+
+            Button btnSuDung = new Button(this);
+            btnSuDung.setText("Sử dụng");
+
+            btnSuDung.setOnClickListener(v -> {
+
+                edtMaGiamGia.setText(uuDai.getMaUuDai());
+
+                apDungMaGiamGia();
+
+                dialog.dismiss();
+            });
+
+            khung.addView(txtTen);
+            khung.addView(txtMa);
+            khung.addView(txtMoTa);
+            khung.addView(txtPhanTram);
+            khung.addView(btnSuDung);
+
+            layout.addView(khung);
+        }
+
+        dialog.show();
     }
 
     // Hiển thị danh sách món ăn trong giỏ hàng
@@ -160,7 +263,6 @@ public class GioHangActivity extends AppCompatActivity {
         if (danhSach.isEmpty()) {
 
             TextView txtTrong = new TextView(this);
-
             txtTrong.setText("Giỏ hàng của bạn đang trống");
             txtTrong.setTextSize(16);
             txtTrong.setTextColor(Color.GRAY);
@@ -168,7 +270,6 @@ public class GioHangActivity extends AppCompatActivity {
             txtTrong.setPadding(10, 35, 10, 35);
 
             llDanhSachMon.addView(txtTrong);
-
             return;
         }
 
@@ -181,7 +282,6 @@ public class GioHangActivity extends AppCompatActivity {
     private void taoDongMonAn(GioHang.SanPhamTrongGio mon) {
 
         LinearLayout khung = new LinearLayout(this);
-
         khung.setOrientation(LinearLayout.HORIZONTAL);
         khung.setGravity(Gravity.CENTER_VERTICAL);
         khung.setBackgroundColor(Color.WHITE);
@@ -215,7 +315,6 @@ public class GioHangActivity extends AppCompatActivity {
 
         // Thông tin món ăn
         LinearLayout thongTin = new LinearLayout(this);
-
         thongTin.setOrientation(LinearLayout.VERTICAL);
         thongTin.setPadding(dp(12), 0, 0, 0);
 
@@ -227,7 +326,6 @@ public class GioHangActivity extends AppCompatActivity {
                 );
 
         TextView txtTen = new TextView(this);
-
         txtTen.setText(mon.tenMonAn);
         txtTen.setTextColor(Color.BLACK);
         txtTen.setTextSize(17);
@@ -236,11 +334,9 @@ public class GioHangActivity extends AppCompatActivity {
         thongTin.addView(txtTen);
 
         TextView txtGia = new TextView(this);
-
         txtGia.setText(
                 dinhDangTien.format(mon.giaMotCombo) + " đ"
         );
-
         txtGia.setTextColor(Color.RED);
         txtGia.setTextSize(17);
         txtGia.setTypeface(null, Typeface.BOLD);
@@ -250,17 +346,14 @@ public class GioHangActivity extends AppCompatActivity {
 
         // Hàng số lượng
         LinearLayout hangSoLuong = new LinearLayout(this);
-
         hangSoLuong.setOrientation(LinearLayout.HORIZONTAL);
         hangSoLuong.setGravity(Gravity.CENTER_VERTICAL);
 
         Button btnGiam = new Button(this);
-
         btnGiam.setText("-");
         btnGiam.setMinWidth(dp(40));
 
         TextView txtSoLuong = new TextView(this);
-
         txtSoLuong.setText(String.valueOf(mon.soLuong));
         txtSoLuong.setTextColor(Color.BLACK);
         txtSoLuong.setTextSize(16);
@@ -268,7 +361,6 @@ public class GioHangActivity extends AppCompatActivity {
         txtSoLuong.setPadding(dp(12), 0, dp(12), 0);
 
         Button btnTang = new Button(this);
-
         btnTang.setText("+");
         btnTang.setMinWidth(dp(40));
 
@@ -277,7 +369,6 @@ public class GioHangActivity extends AppCompatActivity {
                         Color.rgb(237, 37, 43)
                 )
         );
-
         btnTang.setTextColor(Color.WHITE);
 
         hangSoLuong.addView(btnGiam);
@@ -285,16 +376,13 @@ public class GioHangActivity extends AppCompatActivity {
         hangSoLuong.addView(btnTang);
 
         thongTin.addView(hangSoLuong);
-
         khung.addView(thongTin, thongTinParams);
 
         // Nút xóa món
         ImageButton btnXoa = new ImageButton(this);
-
         btnXoa.setImageResource(
                 android.R.drawable.ic_menu_delete
         );
-
         btnXoa.setBackgroundColor(Color.TRANSPARENT);
         btnXoa.setContentDescription("Xóa món");
 
@@ -307,27 +395,21 @@ public class GioHangActivity extends AppCompatActivity {
 
         // Giảm số lượng
         btnGiam.setOnClickListener(v -> {
-
             GioHang.giamSoLuong(mon.maMonAn);
-
             hienThiDanhSachMon();
             capNhatTongTien();
         });
 
         // Tăng số lượng
         btnTang.setOnClickListener(v -> {
-
             GioHang.tangSoLuong(mon.maMonAn);
-
             hienThiDanhSachMon();
             capNhatTongTien();
         });
 
         // Xóa món
         btnXoa.setOnClickListener(v -> {
-
             GioHang.xoaMon(mon.maMonAn);
-
             hienThiDanhSachMon();
             capNhatTongTien();
         });
@@ -337,8 +419,14 @@ public class GioHangActivity extends AppCompatActivity {
     private void capNhatTongTien() {
 
         int tamTinh = GioHang.layTongTien();
-
         int soSanPham = GioHang.layDanhSach().size();
+
+        // Tính lại giảm giá khi số lượng món thay đổi
+        if (!maGiamGiaDangApDung.isEmpty()) {
+            giamGia = tamTinh * phanTramGiamDangApDung / 100;
+        } else {
+            giamGia = 0;
+        }
 
         txtTamTinh.setText(
                 "Tạm tính: " + dinhDangTien.format(tamTinh) + " đ"
@@ -364,37 +452,45 @@ public class GioHangActivity extends AppCompatActivity {
         );
     }
 
-    // Áp dụng mã giảm giá
+    // Áp dụng mã giảm giá từ SQLite
     private void apDungMaGiamGia() {
 
         String ma = edtMaGiamGia.getText()
                 .toString()
                 .trim()
-                .toUpperCase();
+                .toUpperCase(Locale.ROOT);
 
         int tamTinh = GioHang.layTongTien();
 
-        if (tamTinh == 0) {
-
+        if (tamTinh <= 0) {
             Toast.makeText(
                     this,
                     "Giỏ hàng đang trống",
                     Toast.LENGTH_SHORT
             ).show();
-
             return;
         }
 
-        if (ma.equals("GIAM10")) {
+        ArrayList<UuDai> danhSachUuDai =
+                databaseHelper.layDanhSachUuDai();
 
-            giamGia = tamTinh * 10 / 100;
+        UuDai uuDaiTimThay = null;
 
-        } else if (ma.equals("GIAM20")) {
+        for (UuDai uuDai : danhSachUuDai) {
 
-            giamGia = tamTinh * 20 / 100;
+            if (uuDai.getMaUuDai() != null &&
+                    uuDai.getMaUuDai().trim()
+                            .equalsIgnoreCase(ma)) {
 
-        } else {
+                uuDaiTimThay = uuDai;
+                break;
+            }
+        }
 
+        if (uuDaiTimThay == null) {
+
+            maGiamGiaDangApDung = "";
+            phanTramGiamDangApDung = 0;
             giamGia = 0;
 
             Toast.makeText(
@@ -404,9 +500,31 @@ public class GioHangActivity extends AppCompatActivity {
             ).show();
 
             capNhatTongTien();
-
             return;
         }
+
+        int phanTram = uuDaiTimThay.getPhanTramGiam();
+
+        if (phanTram <= 0 || phanTram > 100) {
+
+            maGiamGiaDangApDung = "";
+            phanTramGiamDangApDung = 0;
+            giamGia = 0;
+
+            Toast.makeText(
+                    this,
+                    "Phần trăm giảm giá không hợp lệ",
+                    Toast.LENGTH_SHORT
+            ).show();
+
+            capNhatTongTien();
+            return;
+        }
+
+        maGiamGiaDangApDung = uuDaiTimThay.getMaUuDai();
+        phanTramGiamDangApDung = phanTram;
+
+        giamGia = tamTinh * phanTramGiamDangApDung / 100;
 
         Toast.makeText(
                 this,
@@ -418,40 +536,33 @@ public class GioHangActivity extends AppCompatActivity {
     }
 
     // Xử lý đặt hàng
-
-    // XỬ LÝ ĐẶT HÀNG
     private void datHang() {
 
         ArrayList<GioHang.SanPhamTrongGio> danhSach =
                 GioHang.layDanhSach();
 
         if (danhSach.isEmpty()) {
-
             Toast.makeText(
                     this,
                     "Giỏ hàng đang trống",
                     Toast.LENGTH_SHORT
             ).show();
-
             return;
         }
 
-        // KIỂM TRA PHƯƠNG THỨC THANH TOÁN
+        // Kiểm tra phương thức thanh toán
         int idDuocChon = rgThanhToan.getCheckedRadioButtonId();
 
         if (idDuocChon == -1) {
-
             Toast.makeText(
                     this,
                     "Vui lòng chọn phương thức thanh toán",
                     Toast.LENGTH_SHORT
             ).show();
-
             return;
         }
 
         RadioButton radioButton = findViewById(idDuocChon);
-
         String phuongThuc = radioButton.getText().toString();
 
         String ghiChu = edtGhiChu.getText().toString().trim();
@@ -460,7 +571,7 @@ public class GioHangActivity extends AppCompatActivity {
                 ? "Có lấy dụng cụ ăn uống"
                 : "Không lấy dụng cụ ăn uống";
 
-        // TÍNH TỔNG TIỀN
+        // Tính tổng tiền
         int tongTien = GioHang.layTongTien()
                 + phiVanChuyen
                 - giamGia;
@@ -469,17 +580,16 @@ public class GioHangActivity extends AppCompatActivity {
             tongTien = 0;
         }
 
-        // TẠO MÃ ĐƠN
+        // Tạo mã đơn
         String maDon = "#DH" +
                 (System.currentTimeMillis() % 100000000);
 
         String diaChi = txtDiaChi.getText().toString();
 
-        // CHUYỂN DANH SÁCH COMBO SANG JSON
+        // Chuyển danh sách combo sang JSON
         JSONArray danhSachMonJson = new JSONArray();
 
         try {
-
             for (GioHang.SanPhamTrongGio mon : danhSach) {
 
                 JSONObject object = new JSONObject();
@@ -494,17 +604,15 @@ public class GioHangActivity extends AppCompatActivity {
             }
 
         } catch (Exception e) {
-
             Toast.makeText(
                     this,
                     "Không thể lưu thông tin sản phẩm",
                     Toast.LENGTH_SHORT
             ).show();
-
             return;
         }
 
-        // TẠO INTENT CHUYỂN SANG MÀN HÌNH THÀNH CÔNG
+        // Chuyển sang màn hình đặt hàng thành công
         Intent intent = new Intent(
                 GioHangActivity.this,
                 DatHangThanhCongActivity.class
@@ -519,13 +627,12 @@ public class GioHangActivity extends AppCompatActivity {
         intent.putExtra("ghiChu", ghiChu);
         intent.putExtra("dungCu", dungCu);
 
-        // GỬI DANH SÁCH COMBO SANG MÀN HÌNH THÀNH CÔNG
         intent.putExtra(
                 "danhSachMon",
                 danhSachMonJson.toString()
         );
 
-        // GỬI THÔNG BÁO ĐẶT HÀNG
+        // Gửi thông báo đặt hàng
         ThongBaoDonHang.guiThongBao(
                 GioHangActivity.this,
                 "Đặt hàng thành công",
@@ -536,18 +643,15 @@ public class GioHangActivity extends AppCompatActivity {
                 1001
         );
 
-        // XÓA GIỎ HÀNG SAU KHI ĐÃ LẤY DỮ LIỆU
+        // Xóa giỏ hàng
         GioHang.xoaTatCa();
 
         startActivity(intent);
-
         finish();
     }
 
-
     // Chuyển đổi dp
     private int dp(int giaTri) {
-
         return (int) (
                 giaTri * getResources()
                         .getDisplayMetrics().density
@@ -559,7 +663,6 @@ public class GioHangActivity extends AppCompatActivity {
         super.onResume();
 
         if (llDanhSachMon != null) {
-
             hienThiDanhSachMon();
             capNhatTongTien();
         }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginTop="12dp"
+    android:orientation="vertical"
+    android:background="@drawable/bg_the_uu_dai"
+    android:padding="14dp">
+
+    <TextView
+        android:id="@+id/txtMaUuDai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mã ưu đãi: FOODIE20"
+        android:textColor="#171717"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtTenUuDai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Tên ưu đãi: Giảm giá đặc biệt"
+        android:textColor="#171717"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtGiamGia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Giảm: 20%"
+        android:textColor="#171717"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtMoTaUuDai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Áp dụng cho đơn hàng đủ điều kiện"
+        android:textColor="#666666"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/btnDungNgay"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="-53dp"
+        android:background="@drawable/bg_nut_dung_ngay"
+        android:gravity="center"
+        android:text="Dùng ngay"
+        android:textColor="#ED252B"
+        android:textSize="12sp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:clickable="true"
+        android:focusable="true" />
+
+</LinearLayout>

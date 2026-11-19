@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -86,7 +85,7 @@ public class DonHangActivity extends AppCompatActivity {
         return soDienThoai == null ? "" : soDienThoai.trim();
     }
 
-    // ÁNH XẠ CÁC VIEW THEO XML
+    // ÁNH XẠ VIEW
     private void anhXa() {
 
         layoutDanhSachDonHang =
@@ -107,7 +106,7 @@ public class DonHangActivity extends AppCompatActivity {
                 findViewById(R.id.tabDaHuy);
     }
 
-    // LƯU ĐƠN HÀNG SAU KHI ĐẶT HÀNG THÀNH CÔNG
+    // LƯU ĐƠN HÀNG KHÔNG KÈM DANH SÁCH COMBO
     public static void luuDonHang(
             Context context,
             String maDon,
@@ -142,16 +141,13 @@ public class DonHangActivity extends AppCompatActivity {
             String danhSachMonJson
     ) {
 
-        // KIỂM TRA MÃ ĐƠN
         if (maDon == null || maDon.trim().isEmpty()) {
             return;
         }
 
-        // LẤY TÀI KHOẢN ĐANG ĐĂNG NHẬP
         String soDienThoaiChuDon =
                 laySoDienThoaiDangNhap(context);
 
-        // CHƯA ĐĂNG NHẬP THÌ KHÔNG LƯU ĐƠN
         if (soDienThoaiChuDon.isEmpty()) {
             return;
         }
@@ -172,17 +168,16 @@ public class DonHangActivity extends AppCompatActivity {
             danhSach = new JSONArray();
         }
 
-        // KIỂM TRA TRÙNG MÃ ĐƠN TRONG CÙNG TÀI KHOẢN
+        // KIỂM TRA TRÙNG MÃ ĐƠN
         for (int i = 0; i < danhSach.length(); i++) {
 
             JSONObject don = danhSach.optJSONObject(i);
 
-            if (don != null &&
-                    maDon.equals(don.optString("maDon")) &&
-                    soDienThoaiChuDon.equals(
-                            don.optString("soDienThoaiChuDon", "")
-                    )) {
-
+            if (don != null
+                    && maDon.equals(don.optString("maDon"))
+                    && soDienThoaiChuDon.equals(
+                    don.optString("soDienThoaiChuDon", "")
+            )) {
                 return;
             }
         }
@@ -192,24 +187,32 @@ public class DonHangActivity extends AppCompatActivity {
         try {
 
             donHang.put("maDon", maDon);
-            donHang.put("tongTien", tongTien == null ? "0" : tongTien);
-            donHang.put("phuongThuc", phuongThuc == null ? "Tiền mặt" : phuongThuc);
-            donHang.put("diaChi", diaChi == null ? "" : diaChi);
-            donHang.put("cuaHang", cuaHang == null ? "" : cuaHang);
-            donHang.put("nguoiNhan", nguoiNhan == null ? "" : nguoiNhan);
+            donHang.put("tongTien",
+                    tongTien == null ? "0" : tongTien);
+
+            donHang.put("phuongThuc",
+                    phuongThuc == null ? "Tiền mặt" : phuongThuc);
+
+            donHang.put("diaChi",
+                    diaChi == null ? "" : diaChi);
+
+            donHang.put("cuaHang",
+                    cuaHang == null ? "" : cuaHang);
+
+            donHang.put("nguoiNhan",
+                    nguoiNhan == null ? "" : nguoiNhan);
 
             donHang.put(
                     "trangThai",
                     TRANG_THAI_DAT_THANH_CONG
             );
 
-            // LƯU DANH SÁCH COMBO
             JSONArray danhSachMon;
 
             try {
                 danhSachMon = new JSONArray(
-                        danhSachMonJson == null ||
-                                danhSachMonJson.trim().isEmpty()
+                        danhSachMonJson == null
+                                || danhSachMonJson.trim().isEmpty()
                                 ? "[]"
                                 : danhSachMonJson
                 );
@@ -219,7 +222,6 @@ public class DonHangActivity extends AppCompatActivity {
 
             donHang.put("danhSachMon", danhSachMon);
 
-            // GẮN ĐƠN HÀNG VỚI TÀI KHOẢN ĐẶT HÀNG
             donHang.put(
                     "soDienThoaiChuDon",
                     soDienThoaiChuDon
@@ -231,20 +233,24 @@ public class DonHangActivity extends AppCompatActivity {
                     .putString(KEY_DON_HANG, danhSach.toString())
                     .apply();
 
+            // CẬP NHẬT WIDGET SAU KHI LƯU ĐƠN HÀNG
+            TheoDoiDonHangWidget.capNhatWidget(context);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    // CẬP NHẬT TRẠNG THÁI ĐƠN HÀNG CỦA TÀI KHOẢN HIỆN TẠI
+    // CẬP NHẬT TRẠNG THÁI ĐƠN HÀNG
     public static void capNhatTrangThai(
             Context context,
             String maDon,
             String trangThaiMoi
     ) {
 
-        if (maDon == null || maDon.trim().isEmpty() ||
-                trangThaiMoi == null || trangThaiMoi.trim().isEmpty()) {
+        if (maDon == null || maDon.trim().isEmpty()
+                || trangThaiMoi == null
+                || trangThaiMoi.trim().isEmpty()) {
             return;
         }
 
@@ -273,11 +279,11 @@ public class DonHangActivity extends AppCompatActivity {
 
                 JSONObject don = danhSach.optJSONObject(i);
 
-                if (don != null &&
-                        maDon.equals(don.optString("maDon")) &&
-                        soDienThoaiChuDon.equals(
-                                don.optString("soDienThoaiChuDon", "")
-                        )) {
+                if (don != null
+                        && maDon.equals(don.optString("maDon"))
+                        && soDienThoaiChuDon.equals(
+                        don.optString("soDienThoaiChuDon", "")
+                )) {
 
                     don.put("trangThai", trangThaiMoi);
                     daCapNhat = true;
@@ -286,9 +292,13 @@ public class DonHangActivity extends AppCompatActivity {
             }
 
             if (daCapNhat) {
+
                 preferences.edit()
                         .putString(KEY_DON_HANG, danhSach.toString())
                         .apply();
+
+                // CẬP NHẬT WIDGET KHI TRẠNG THÁI THAY ĐỔI
+                TheoDoiDonHangWidget.capNhatWidget(context);
             }
 
         } catch (JSONException e) {
@@ -296,20 +306,17 @@ public class DonHangActivity extends AppCompatActivity {
         }
     }
 
-    // LẤY DANH SÁCH ĐƠN HÀNG ĐÃ LƯU
+    // LẤY DANH SÁCH ĐƠN HÀNG
     private JSONArray layDanhSachDonHang() {
 
         SharedPreferences preferences =
                 getSharedPreferences(TEN_PREF, MODE_PRIVATE);
 
         try {
-
             return new JSONArray(
                     preferences.getString(KEY_DON_HANG, "[]")
             );
-
         } catch (JSONException e) {
-
             return new JSONArray();
         }
     }
@@ -348,7 +355,7 @@ public class DonHangActivity extends AppCompatActivity {
         hienThiDanhSachDonHang();
     }
 
-    // CẬP NHẬT GIAO DIỆN TAB ĐƯỢC CHỌN
+    // CẬP NHẬT GIAO DIỆN TAB
     private void capNhatGiaoDienTab() {
 
         capNhatMotTab(
@@ -407,7 +414,7 @@ public class DonHangActivity extends AppCompatActivity {
         tab.setBackground(nen);
     }
 
-    // HIỂN THỊ DANH SÁCH ĐƠN HÀNG CỦA TÀI KHOẢN HIỆN TẠI
+    // HIỂN THỊ DANH SÁCH ĐƠN HÀNG
     private void hienThiDanhSachDonHang() {
 
         layoutDanhSachDonHang.removeAllViews();
@@ -416,7 +423,6 @@ public class DonHangActivity extends AppCompatActivity {
                 laySoDienThoaiDangNhap(this);
 
         if (soDienThoaiChuDon.isEmpty()) {
-
             hienThiDonHangTrong();
             return;
         }
@@ -434,7 +440,6 @@ public class DonHangActivity extends AppCompatActivity {
                 continue;
             }
 
-            // KIỂM TRA CHỦ SỞ HỮU ĐƠN HÀNG
             String soDienThoaiDon = don.optString(
                     "soDienThoaiChuDon",
                     ""
@@ -446,18 +451,15 @@ public class DonHangActivity extends AppCompatActivity {
 
             String trangThai = don.optString("trangThai");
 
-            // LỌC ĐƠN THEO TAB
             if (!trangThaiDangChon.equals("Tất cả")
                     && !trangThaiDangChon.equals(trangThai)) {
                 continue;
             }
 
             taoTheDonHang(don);
-
             soDonHienThi++;
         }
 
-        // KHÔNG CÓ ĐƠN HÀNG
         if (soDonHienThi == 0) {
             hienThiDonHangTrong();
         }
@@ -472,12 +474,7 @@ public class DonHangActivity extends AppCompatActivity {
 
         LinearLayout the = new LinearLayout(this);
         the.setOrientation(LinearLayout.VERTICAL);
-        the.setPadding(
-                dp(12),
-                dp(10),
-                dp(12),
-                dp(10)
-        );
+        the.setPadding(dp(12), dp(10), dp(12), dp(10));
 
         GradientDrawable nen = new GradientDrawable();
         nen.setColor(Color.WHITE);
@@ -524,10 +521,7 @@ public class DonHangActivity extends AppCompatActivity {
         );
 
         txtTrangThai.setPadding(
-                dp(9),
-                dp(5),
-                dp(9),
-                dp(5)
+                dp(9), dp(5), dp(9), dp(5)
         );
 
         GradientDrawable nenTrangThai = new GradientDrawable();
@@ -568,10 +562,14 @@ public class DonHangActivity extends AppCompatActivity {
                     try {
                         imgMon.setImageResource(hinhAnh);
                     } catch (Exception e) {
-                        imgMon.setImageResource(android.R.drawable.ic_menu_gallery);
+                        imgMon.setImageResource(
+                                android.R.drawable.ic_menu_gallery
+                        );
                     }
                 } else {
-                    imgMon.setImageResource(android.R.drawable.ic_menu_gallery);
+                    imgMon.setImageResource(
+                            android.R.drawable.ic_menu_gallery
+                    );
                 }
 
                 imgMon.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -600,6 +598,8 @@ public class DonHangActivity extends AppCompatActivity {
                         mon.optString("gia", "0")
                 );
 
+                int soLuong = mon.optInt("soLuong", 1);
+
                 TextView txtTenMon = taoText(
                         tenMon,
                         14,
@@ -608,7 +608,7 @@ public class DonHangActivity extends AppCompatActivity {
                 );
 
                 TextView txtGia = taoText(
-                        gia,
+                        gia + " x " + soLuong,
                         13,
                         "#E9232D",
                         true
@@ -644,7 +644,7 @@ public class DonHangActivity extends AppCompatActivity {
 
         themDuongKe(the);
 
-        // DÒNG TỔNG TIỀN VÀ NÚT ĐẶT LẠI
+        // TỔNG TIỀN VÀ NÚT ĐẶT LẠI
         LinearLayout dongCuoi = new LinearLayout(this);
 
         dongCuoi.setGravity(Gravity.CENTER_VERTICAL);
@@ -686,18 +686,18 @@ public class DonHangActivity extends AppCompatActivity {
 
         btnDatLai.setBackground(nenNut);
 
+        // NHẤN ĐẶT LẠI CHUYỂN VỀ THỰC ĐƠN
         btnDatLai.setOnClickListener(v -> {
 
-            Toast.makeText(
-                    this,
-                    "Chức năng đặt lại sẽ được kết nối với giỏ hàng.",
-                    Toast.LENGTH_SHORT
-            ).show();
+            Intent intent = new Intent(
+                    DonHangActivity.this,
+                    ThucDonActivity.class
+            );
 
+            startActivity(intent);
         });
 
         dongCuoi.addView(btnDatLai);
-
         the.addView(dongCuoi);
 
         layoutDanhSachDonHang.addView(the);
@@ -715,10 +715,7 @@ public class DonHangActivity extends AppCompatActivity {
 
         text.setText(noiDung);
         text.setTextSize(kichThuoc);
-
-        text.setTextColor(
-                Color.parseColor(mau)
-        );
+        text.setTextColor(Color.parseColor(mau));
 
         if (dam) {
             text.setTypeface(null, Typeface.BOLD);
@@ -878,7 +875,7 @@ public class DonHangActivity extends AppCompatActivity {
         );
     }
 
-    // CẬP NHẬT LẠI DANH SÁCH KHI QUAY TRỞ LẠI
+    // CẬP NHẬT DANH SÁCH KHI QUAY TRỞ LẠI
     @Override
     protected void onResume() {
         super.onResume();

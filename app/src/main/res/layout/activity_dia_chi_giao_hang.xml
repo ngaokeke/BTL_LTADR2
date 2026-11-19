@@ -1,214 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#FFFFFF">
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:fillViewport="true"
         android:scrollbars="none"
-        android:paddingHorizontal="23dp">
+        android:paddingHorizontal="18dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <!-- Tiêu đề trang -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_height="66dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
+
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="48dp"
+                    android:id="@+id/btnQuayLai"
+                    android:layout_width="38dp"
+                    android:layout_height="44dp"
                     android:src="@drawable/ic_back_dark"
-                    android:contentDescription="@string/activity_dia_chi_giao_hang_btn_quay_lai_contentdescription_3"
+                    android:contentDescription="Quay lại"
                     android:scaleType="fitCenter"
-                    android:padding="8dp"
-                    android:id="@+id/btnQuayLai" />
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:id="@+id/edtTimDiaChi"
-                    android:hint="@string/activity_dia_chi_giao_hang_edt_tim_dia_chi_hint_4"
-                    android:inputType="textPostalAddress"
-                    android:singleLine="true"
-                    android:textSize="13sp"
-                    android:textColor="#171717"
-                    android:textColorHint="#A6A6A6"
-                    android:fontFamily="@font/be_vietnam_pro"
-                    android:paddingHorizontal="12dp"
-                    android:background="@drawable/bg_field"
-                    android:layout_weight="1" />
-                <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:src="@drawable/ic_location_white"
-                    android:contentDescription="@string/activity_dia_chi_giao_hang_btn_vi_tri_contentdescription_3"
-                    android:scaleType="fitCenter"
-                    android:layout_marginStart="10dp"
-                    android:background="@drawable/bg_red_pill"
-                    android:padding="10dp"
-                    android:id="@+id/btnViTri" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginTop="10dp">
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_location"
-                    android:contentDescription="@string/activity_dia_chi_giao_hang_8_contentdescription_3"
-                    android:scaleType="fitCenter" />
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:layout_marginStart="8dp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/activity_dia_chi_giao_hang_8_contentdescription_3"
-                        android:textSize="16sp"
-                        android:textColor="#171717"
-                        android:fontFamily="@font/be_vietnam_pro"
-                        android:textStyle="bold" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/activity_dia_chi_giao_hang_11_text_3"
-                        android:textSize="13sp"
-                        android:textColor="#B3B3B3"
-                        android:fontFamily="@font/be_vietnam_pro" />
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="28dp">
+                    android:padding="7dp" />
+
                 <TextView
-                    android:layout_width="99dp"
-                    android:layout_height="40dp"
-                    android:text="@string/activity_dia_chi_giao_hang_btn_dia_chi_da_luu_text_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Địa chỉ của tôi"
                     android:textSize="15sp"
                     android:textColor="#ED252B"
-                    android:fontFamily="@font/be_vietnam_pro"
-                    android:gravity="center"
-                    android:background="@drawable/bg_saved_tab"
                     android:textStyle="bold"
-                    android:id="@+id/btnDiaChiDaLuu" />
-                <TextView
-                    android:layout_width="168dp"
-                    android:layout_height="40dp"
-                    android:text="@string/activity_dia_chi_giao_hang_btn_gan_day_text_3"
-                    android:textSize="15sp"
-                    android:textColor="#171717"
                     android:fontFamily="@font/be_vietnam_pro"
-                    android:gravity="center"
-                    android:layout_marginStart="20dp"
-                    android:background="@drawable/bg_panel"
-                    android:id="@+id/btnGanDay" />
+                    android:layout_marginStart="2dp" />
+
             </LinearLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:text="@string/activity_dia_chi_giao_hang_btn_tao_dia_chi_text_4"
-                android:textSize="14sp"
-                android:textColor="#ED252B"
-                android:fontFamily="@font/be_vietnam_pro"
-                android:textStyle="bold"
-                android:gravity="center_vertical"
-                android:paddingStart="60dp"
-                android:id="@+id/btnTaoDiaChi" />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#DDDDDD" />
+
+            <!-- Thẻ địa chỉ -->
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:id="@+id/cardDiaChi"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="vertical"
                 android:background="@drawable/bg_address_card"
-                android:padding="14dp"
-                android:layout_marginTop="16dp">
+                android:padding="12dp"
+                android:layout_marginTop="10dp">
+
+                <!-- Dòng tên và nút sửa -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical">
+
                     <ImageView
                         android:layout_width="26dp"
                         android:layout_height="26dp"
                         android:src="@drawable/ic_nav_home"
-                        android:contentDescription="@string/activity_dia_chi_giao_hang_19_contentdescription_3"
+                        android:contentDescription="Địa chỉ nhà"
                         android:scaleType="fitCenter"
-                        android:layout_marginEnd="12dp" />
+                        android:layout_marginEnd="10dp" />
+
                     <TextView
+                        android:id="@+id/txtTenDiaChi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/activity_dia_chi_giao_hang_txt_ten_dia_chi_text_4"
+                        android:text="Tên Khách Hàng"
                         android:textSize="14sp"
                         android:textColor="#171717"
-                        android:fontFamily="@font/be_vietnam_pro"
                         android:textStyle="bold"
-                        android:id="@+id/txtTenDiaChi" />
+                        android:fontFamily="@font/be_vietnam_pro" />
+
                     <TextView
-                        android:layout_width="78dp"
-                        android:layout_height="24dp"
                         android:id="@+id/txtMacDinh"
-                        android:text="@string/activity_dia_chi_giao_hang_21_text_3"
-                        android:textSize="11sp"
+                        android:layout_width="62dp"
+                        android:layout_height="22dp"
+                        android:text="Mặc định"
+                        android:textSize="10sp"
                         android:textColor="#269B67"
-                        android:fontFamily="@font/be_vietnam_pro"
                         android:gravity="center"
-                        android:layout_marginStart="10dp"
-                        android:background="@drawable/bg_default_address" />
+                        android:fontFamily="@font/be_vietnam_pro"
+                        android:background="@drawable/bg_default_address"
+                        android:layout_marginStart="6dp" />
+
                     <Space
                         android:layout_width="0dp"
                         android:layout_height="1dp"
                         android:layout_weight="1" />
+
                     <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
+                        android:id="@+id/btnSuaDiaChi"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:src="@drawable/ic_edit"
-                        android:contentDescription="@string/activity_dia_chi_giao_hang_btn_sua_dia_chi_contentdescription_3"
+                        android:contentDescription="Sửa địa chỉ"
                         android:scaleType="fitCenter"
-                        android:padding="5dp"
-                        android:id="@+id/btnSuaDiaChi" />
+                        android:padding="4dp" />
+
                 </LinearLayout>
+
+                <!-- Nội dung địa chỉ -->
                 <TextView
+                    android:id="@+id/txtDiaChi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/activity_dia_chi_giao_hang_txt_dia_chi_text_4"
-                    android:textSize="13sp"
+                    android:text="Phố Tân Mai, Hoàng Mai, Hà Nội, Việt Nam"
+                    android:textSize="12sp"
                     android:textColor="#888888"
                     android:fontFamily="@font/be_vietnam_pro"
-                    android:layout_marginStart="38dp"
-                    android:layout_marginTop="4dp"
-                    android:id="@+id/txtDiaChi" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/activity_dia_chi_giao_hang_txt_cua_hang_text_4"
-                    android:textSize="11sp"
-                    android:textColor="#171717"
-                    android:fontFamily="@font/be_vietnam_pro"
-                    android:layout_marginStart="38dp"
-                    android:layout_marginTop="12dp"
-                    app:drawableStartCompat="@drawable/ic_store"
-                    android:drawablePadding="8dp"
-                    android:id="@+id/txtCuaHang" />
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="4dp" />
+
             </LinearLayout>
+
         </LinearLayout>
+
     </ScrollView>
+
 </LinearLayout>

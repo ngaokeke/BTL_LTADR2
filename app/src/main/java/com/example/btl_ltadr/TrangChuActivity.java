@@ -1,3 +1,4 @@
+
 package com.example.btl_ltadr;
 
 import android.content.Intent;
@@ -19,41 +20,46 @@ import java.util.List;
 
 public class TrangChuActivity extends AppCompatActivity {
 
-    RecyclerView rvDanhSachMonAn;
-    RecyclerView rvDanhSachUuDai;
+    private RecyclerView rvDanhSachMonAn;
+    private RecyclerView rvDanhSachUuDai;
 
-    MonAnAdapter monAnAdapter;
-    UuDaiAdapter uuDaiAdapter;
+    private MonAnAdapter monAnAdapter;
+    private UuDaiAdapter uuDaiAdapter;
 
-    List<MonAn> danhSachMonAn;
-    List<UuDai> danhSachUuDai;
+    private DatabaseHelper databaseHelper;
 
-    TextView btnDatHangNgay;
+    private List<MonAn> danhSachMonAn;
+    private List<UuDai> danhSachUuDai;
 
-    LinearLayout navTrangChu;
-    LinearLayout navThucDon;
-    LinearLayout navGioHang;
-    LinearLayout navDonHang;
-    LinearLayout navTaiKhoan;
+    private TextView btnDatHangNgay;
+    private TextView btnXemThem;
+    private TextView btnMenu;
 
-    View btnGioHangNoi;
+    private LinearLayout navTrangChu;
+    private LinearLayout navThucDon;
+    private LinearLayout navGioHang;
+    private LinearLayout navDonHang;
+    private LinearLayout navTaiKhoan;
 
-    LinearLayout layoutHeaderChuaDangNhap;
-    LinearLayout layoutHeaderDaDangNhap;
+    private View btnGioHangNoi;
 
-    TextView btnDangNhap;
-    TextView txtDiaChiChuaDangNhap;
-    ImageButton btnQuetMaChuaDangNhap;
-    ImageButton btnThongBaoChuaDangNhap;
+    private LinearLayout layoutHeaderChuaDangNhap;
+    private LinearLayout layoutHeaderDaDangNhap;
 
-    TextView txtLoiChao;
-    TextView txtDiaChiGiaoHang;
-    TextView txtDiemRIA;
-    TextView txtHangThanhVien;
-    ImageView imgGaRanHeader;
+    private TextView btnDangNhap;
+    private TextView txtDiaChiChuaDangNhap;
+    private ImageButton btnQuetMaChuaDangNhap;
+    private ImageButton btnThongBaoChuaDangNhap;
 
-    ImageButton btnQuetMa;
-    ImageButton btnThongBao;
+    private TextView txtLoiChao;
+    private TextView txtDiaChiGiaoHang;
+    private TextView txtDiemRIA;
+    private TextView txtHangThanhVien;
+
+    private ImageView imgGaRanHeader;
+
+    private ImageButton btnQuetMa;
+    private ImageButton btnThongBao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +68,8 @@ public class TrangChuActivity extends AppCompatActivity {
 
         anhXa();
 
-        // Kiểm tra trạng thái đăng nhập đã lưu
+        databaseHelper = new DatabaseHelper(this);
+
         hienThiThongTinDangNhap();
 
         taoDanhSachMonAn();
@@ -75,14 +82,18 @@ public class TrangChuActivity extends AppCompatActivity {
         xuLySuKienHeader();
     }
 
-    // Cập nhật giao diện khi quay lại trang chủ
     @Override
     protected void onResume() {
         super.onResume();
-        hienThiThongTinDangNhap();
+
+        if (databaseHelper != null) {
+            hienThiThongTinDangNhap();
+            capNhatDanhSachUuDai();
+        }
     }
 
-    // Lấy thông tin đăng nhập từ SharedPreferences
+    // ================= THONG TIN DANG NHAP =================
+
     private void hienThiThongTinDangNhap() {
 
         SharedPreferences session = getSharedPreferences(
@@ -97,15 +108,35 @@ public class TrangChuActivity extends AppCompatActivity {
 
         if (daDangNhap) {
 
-            String ten = session.getString("TEN_KHACH_HANG", "");
-            String sdt = session.getString("SO_DIEN_THOAI", "");
-
-            KhachHang khachHang = new KhachHang(
-                    "",
-                    ten,
-                    sdt,
+            String ten = session.getString(
+                    "TEN_KHACH_HANG",
                     ""
             );
+
+            String sdt = session.getString(
+                    "SO_DIEN_THOAI",
+                    ""
+            );
+
+            KhachHang khachHang = databaseHelper.layKhachHang(
+                    "KH" + sdt
+            );
+
+            if (khachHang == null) {
+                khachHang = new KhachHang(
+                        "KH" + sdt,
+                        ten,
+                        sdt,
+                        ""
+                );
+            }
+
+            session.edit()
+                    .putString(
+                            "TEN_KHACH_HANG",
+                            khachHang.getTenKhachHang()
+                    )
+                    .apply();
 
             hienThiHeaderDaDangNhap(khachHang);
 
@@ -114,12 +145,16 @@ public class TrangChuActivity extends AppCompatActivity {
         }
     }
 
+    // ================= ANH XA =================
+
     private void anhXa() {
 
         rvDanhSachMonAn = findViewById(R.id.rvDanhSachMonAn);
         rvDanhSachUuDai = findViewById(R.id.rvDanhSachUuDai);
 
         btnDatHangNgay = findViewById(R.id.btnDatHangNgay);
+        btnXemThem = findViewById(R.id.btnXemThem);
+        btnMenu = findViewById(R.id.btnMenu);
 
         navTrangChu = findViewById(R.id.navTrangChu);
         navThucDon = findViewById(R.id.navThucDon);
@@ -157,6 +192,8 @@ public class TrangChuActivity extends AppCompatActivity {
         btnThongBao = findViewById(R.id.btnThongBao);
     }
 
+    // ================= HEADER =================
+
     private void hienThiHeaderChuaDangNhap() {
 
         layoutHeaderChuaDangNhap.setVisibility(View.VISIBLE);
@@ -189,87 +226,231 @@ public class TrangChuActivity extends AppCompatActivity {
         hienThiHeaderDaDangNhap(khachHang);
     }
 
+    // ================= KIEM TRA DIA CHI =================
+
+    private boolean kiemTraDiaChiGiaoHang() {
+
+        SharedPreferences preferences = getSharedPreferences(
+                "FOODIE_SESSION",
+                MODE_PRIVATE
+        );
+
+        boolean daDangNhap = preferences.getBoolean(
+                "DANG_DANG_NHAP",
+                false
+        );
+
+        String soDienThoai = preferences.getString(
+                "SO_DIEN_THOAI",
+                ""
+        );
+
+        if (!daDangNhap || soDienThoai.trim().isEmpty()) {
+
+            Toast.makeText(
+                    this,
+                    "Vui lòng đăng nhập trước!",
+                    Toast.LENGTH_SHORT
+            ).show();
+
+            startActivity(new Intent(this, DangNhapActivity.class));
+            return false;
+        }
+
+        KhachHang khachHang = databaseHelper.layKhachHang(
+                "KH" + soDienThoai
+        );
+
+        if (khachHang == null
+                || khachHang.getDiaChiGiaoHang() == null
+                || khachHang.getDiaChiGiaoHang().trim().isEmpty()) {
+
+            Toast.makeText(
+                    this,
+                    "Vui lòng cập nhật địa chỉ giao hàng!",
+                    Toast.LENGTH_SHORT
+            ).show();
+
+            startActivity(new Intent(this, DiaChiGiaoHangActivity.class));
+            return false;
+        }
+
+        return true;
+    }
+
+    // ================= CHI TIET MON AN =================
+
+    private void moChiTietMonAn(MonAn monAn) {
+
+        if (!kiemTraDiaChiGiaoHang()) {
+            return;
+        }
+
+        Intent intent = new Intent(
+                this,
+                ChiTietMonAnActivity.class
+        );
+
+        intent.putExtra("maMonAn", monAn.getMaMonAn());
+        intent.putExtra("tenMonAn", monAn.getTenMonAn());
+        intent.putExtra("giaMonAn", monAn.getGiaMonAn());
+        intent.putExtra("giaCu", monAn.getGiaCu());
+        intent.putExtra("moTa", monAn.getMoTa());
+        intent.putExtra("hinhAnh", monAn.getHinhAnh());
+
+        startActivity(intent);
+    }
+
+    // ================= SU KIEN HEADER =================
+
     private void xuLySuKienHeader() {
 
         btnDangNhap.setOnClickListener(v -> {
 
-            Intent intent = new Intent(
+            startActivity(new Intent(
                     TrangChuActivity.this,
                     DangNhapActivity.class
+            ));
+        });
+
+        btnQuetMaChuaDangNhap.setOnClickListener(v ->
+                Toast.makeText(this, "Quét mã QR", Toast.LENGTH_SHORT).show()
+        );
+
+        btnThongBaoChuaDangNhap.setOnClickListener(v ->
+                Toast.makeText(this, "Thông báo", Toast.LENGTH_SHORT).show()
+        );
+
+        btnQuetMa.setOnClickListener(v ->
+                Toast.makeText(this, "Quét mã QR", Toast.LENGTH_SHORT).show()
+        );
+
+        btnThongBao.setOnClickListener(v ->
+                Toast.makeText(this, "Thông báo", Toast.LENGTH_SHORT).show()
+        );
+
+        txtDiaChiChuaDangNhap.setOnClickListener(v -> {
+
+            SharedPreferences session = getSharedPreferences(
+                    "FOODIE_SESSION",
+                    MODE_PRIVATE
             );
 
-            startActivity(intent);
+            if (!session.getBoolean("DANG_DANG_NHAP", false)) {
+                startActivity(new Intent(this, DangNhapActivity.class));
+            } else {
+                startActivity(new Intent(this, DiaChiGiaoHangActivity.class));
+            }
         });
 
-        btnQuetMaChuaDangNhap.setOnClickListener(v -> {
-            Toast.makeText(
-                    this,
-                    "Quét mã QR",
-                    Toast.LENGTH_SHORT
-            ).show();
-        });
+        txtDiaChiGiaoHang.setOnClickListener(v -> {
 
-        btnThongBaoChuaDangNhap.setOnClickListener(v -> {
-            Toast.makeText(
-                    this,
-                    "Thông báo",
-                    Toast.LENGTH_SHORT
-            ).show();
-        });
+            if (!kiemTraDangNhap()) {
+                return;
+            }
 
-        btnQuetMa.setOnClickListener(v -> {
-            Toast.makeText(
+            startActivity(new Intent(
                     this,
-                    "Quét mã QR",
-                    Toast.LENGTH_SHORT
-            ).show();
-        });
-
-        btnThongBao.setOnClickListener(v -> {
-            Toast.makeText(
-                    this,
-                    "Thông báo",
-                    Toast.LENGTH_SHORT
-            ).show();
+                    DiaChiGiaoHangActivity.class
+            ));
         });
     }
+
+    private boolean kiemTraDangNhap() {
+
+        SharedPreferences session = getSharedPreferences(
+                "FOODIE_SESSION",
+                MODE_PRIVATE
+        );
+
+        if (!session.getBoolean("DANG_DANG_NHAP", false)) {
+
+            Toast.makeText(
+                    this,
+                    "Vui lòng đăng nhập trước!",
+                    Toast.LENGTH_SHORT
+            ).show();
+
+            startActivity(new Intent(this, DangNhapActivity.class));
+            return false;
+        }
+
+        return true;
+    }
+
+    // ================= MON AN SQLITE =================
 
     private void taoDanhSachMonAn() {
-        danhSachMonAn = DuLieuMonAn.taoDanhSachBanChay();
+
+        databaseHelper.khoiTaoDuLieuMonAnMacDinh();
+
+        ArrayList<MonAn> tatCaMon =
+                databaseHelper.layDanhSachMonAn();
+
+        danhSachMonAn = new ArrayList<>();
+
+        for (MonAn monAn : tatCaMon) {
+
+            if (monAn.getMaMonAn() >= 1
+                    && monAn.getMaMonAn() <= 7) {
+
+                danhSachMonAn.add(monAn);
+            }
+        }
     }
+
+    // ================= UU DAI SQLITE =================
 
     private void taoDanhSachUuDai() {
 
-        danhSachUuDai = new ArrayList<>();
-
-        danhSachUuDai.add(new UuDai(
-                1,
-                "Ưu đãi thành viên",
-                "Ưu đãi dành cho thành viên.",
-                R.drawable.uudai
-        ));
-
-        danhSachUuDai.add(new UuDai(
-                2,
+        // Thêm dữ liệu mẫu nếu mã ưu đãi chưa tồn tại.
+        databaseHelper.themUuDai(new UuDai(
+                "FOODIE20",
                 "Giảm giá đặc biệt",
-                "Nhận ưu đãi khi đặt hàng.",
+                "Áp dụng cho đơn hàng đủ điều kiện",
+                20,
                 R.drawable.uudai
         ));
 
-        danhSachUuDai.add(new UuDai(
-                3,
+        databaseHelper.themUuDai(new UuDai(
+                "FOODIE30",
+                "Ưu đãi thành viên",
+                "Áp dụng cho đơn hàng từ 200.000đ",
+                30,
+                R.drawable.uudai
+        ));
+
+        databaseHelper.themUuDai(new UuDai(
+                "COMBO15",
                 "Combo tiết kiệm",
-                "Tiết kiệm khi mua combo.",
+                "Tiết kiệm khi mua combo",
+                15,
                 R.drawable.uudai
         ));
 
-        danhSachUuDai.add(new UuDai(
-                4,
+        databaseHelper.themUuDai(new UuDai(
+                "WEEKEND10",
                 "Ưu đãi cuối tuần",
-                "Ưu đãi dành cho cuối tuần.",
+                "Áp dụng cho đơn hàng cuối tuần",
+                10,
                 R.drawable.uudai
         ));
+
+        // Đọc dữ liệu từ SQLite.
+        danhSachUuDai = databaseHelper.layDanhSachUuDai();
     }
+
+    // Đọc lại danh sách ưu đãi khi quay về trang chủ.
+    private void capNhatDanhSachUuDai() {
+
+        danhSachUuDai = databaseHelper.layDanhSachUuDai();
+
+        if (uuDaiAdapter != null) {
+            uuDaiAdapter.capNhatDanhSach(danhSachUuDai);
+        }
+    }
+
+    // ================= HIEN THI MON AN =================
 
     private void hienThiDanhSachMonAn() {
 
@@ -281,29 +462,17 @@ public class TrangChuActivity extends AppCompatActivity {
                 );
 
         rvDanhSachMonAn.setLayoutManager(boCucMonAn);
+        rvDanhSachMonAn.setNestedScrollingEnabled(false);
 
         monAnAdapter = new MonAnAdapter(
                 danhSachMonAn,
-                monAn -> {
-
-                    Intent intent = new Intent(
-                            TrangChuActivity.this,
-                            ChiTietMonAnActivity.class
-                    );
-
-                    intent.putExtra("maMonAn", monAn.getMaMonAn());
-                    intent.putExtra("tenMonAn", monAn.getTenMonAn());
-                    intent.putExtra("giaMonAn", monAn.getGiaMonAn());
-                    intent.putExtra("giaCu", monAn.getGiaCu());
-                    intent.putExtra("moTa", monAn.getMoTa());
-                    intent.putExtra("hinhAnh", monAn.getHinhAnh());
-
-                    startActivity(intent);
-                }
+                monAn -> moChiTietMonAn(monAn)
         );
 
         rvDanhSachMonAn.setAdapter(monAnAdapter);
     }
+
+    // ================= HIEN THI UU DAI =================
 
     private void hienThiDanhSachUuDai() {
 
@@ -315,51 +484,61 @@ public class TrangChuActivity extends AppCompatActivity {
                 );
 
         rvDanhSachUuDai.setLayoutManager(boCucUuDai);
+        rvDanhSachUuDai.setNestedScrollingEnabled(false);
 
         uuDaiAdapter = new UuDaiAdapter(danhSachUuDai);
 
         rvDanhSachUuDai.setAdapter(uuDaiAdapter);
     }
 
+    // ================= CHUYEN MAN HINH =================
+
     private void moTrangGioHang() {
 
-        Intent intent = new Intent(
-                TrangChuActivity.this,
+        startActivity(new Intent(
+                this,
                 GioHangActivity.class
-        );
-
-        startActivity(intent);
+        ));
     }
+
+    private void moTrangUuDai() {
+
+        startActivity(new Intent(
+                this,
+                UuDaiActivity.class
+        ));
+    }
+
+    private void moTrangThucDon() {
+
+        startActivity(new Intent(
+                this,
+                ThucDonActivity.class
+        ));
+    }
+
+    // ================= SU KIEN =================
 
     private void xuLySuKien() {
 
         btnDatHangNgay.setOnClickListener(v -> {
 
-            Intent intent = new Intent(
-                    TrangChuActivity.this,
-                    ThucDonActivity.class
-            );
+            if (!kiemTraDiaChiGiaoHang()) {
+                return;
+            }
 
-            startActivity(intent);
+            moTrangThucDon();
         });
 
-        navTrangChu.setOnClickListener(v -> {
-            Toast.makeText(
-                    this,
-                    "Trang chủ",
-                    Toast.LENGTH_SHORT
-            ).show();
-        });
+        btnXemThem.setOnClickListener(v -> moTrangUuDai());
 
-        navThucDon.setOnClickListener(v -> {
+        btnMenu.setOnClickListener(v -> moTrangThucDon());
 
-            Intent intent = new Intent(
-                    TrangChuActivity.this,
-                    ThucDonActivity.class
-            );
+        navTrangChu.setOnClickListener(v ->
+                Toast.makeText(this, "Trang chủ", Toast.LENGTH_SHORT).show()
+        );
 
-            startActivity(intent);
-        });
+        navThucDon.setOnClickListener(v -> moTrangThucDon());
 
         navGioHang.setOnClickListener(v -> moTrangGioHang());
 
@@ -367,21 +546,27 @@ public class TrangChuActivity extends AppCompatActivity {
 
         navDonHang.setOnClickListener(v -> {
 
-            Intent intent = new Intent(
-                    TrangChuActivity.this,
+            startActivity(new Intent(
+                    this,
                     DonHangActivity.class
-            );
-
-            startActivity(intent);
+            ));
         });
 
         navTaiKhoan.setOnClickListener(v -> {
-            Intent intent = new Intent(
-                    TrangChuActivity.this,
-                    TaiKhoanActivity.class
-            );
 
-            startActivity(intent);
+            startActivity(new Intent(
+                    this,
+                    TaiKhoanActivity.class
+            ));
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (databaseHelper != null) {
+            databaseHelper.close();
+        }
     }
 }

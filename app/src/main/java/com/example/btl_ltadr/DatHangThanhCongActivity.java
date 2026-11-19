@@ -1,10 +1,10 @@
-
 package com.example.btl_ltadr;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +28,8 @@ public class DatHangThanhCongActivity extends AppCompatActivity {
     private TextView btnHuyDon;
     private TextView btnVeTrangChu;
 
+    private DatabaseHelper databaseHelper;
+
     private String maDon;
     private String danhSachMonJson = "[]";
 
@@ -43,8 +45,12 @@ public class DatHangThanhCongActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dat_hang_thanh_cong);
 
         anhXa();
-        hienThiThongTinDonHang();
-        xuLySuKien();
+
+        databaseHelper = new DatabaseHelper(this);
+
+        if (hienThiThongTinDonHang()) {
+            xuLySuKien();
+        }
     }
 
     private void anhXa() {
@@ -61,10 +67,47 @@ public class DatHangThanhCongActivity extends AppCompatActivity {
         btnVeTrangChu = findViewById(R.id.btnVeTrangChu);
     }
 
-    private void hienThiThongTinDonHang() {
+    private boolean hienThiThongTinDonHang() {
 
         Intent intent = getIntent();
 
+        // Lấy mã khách hàng hoặc số điện thoại đang đăng nhập
+        SharedPreferences preferences = getSharedPreferences(
+                "FOODIE_SESSION", MODE_PRIVATE
+        );
+
+        String sdt = preferences.getString("SO_DIEN_THOAI", "");
+
+        // Truy vấn thông tin khách hàng từ SQLite
+        KhachHang khachHang = databaseHelper.layKhachHang("KH" + sdt);
+
+        if (khachHang == null) {
+            Toast.makeText(this,
+                    "Không tìm thấy thông tin khách hàng!",
+                    Toast.LENGTH_LONG).show();
+            finish();
+            return false;
+        }
+
+        // Lấy tên và địa chỉ trực tiếp từ SQLite
+        nguoiNhan = khachHang.getTenKhachHang();
+        diaChi = khachHang.getDiaChiGiaoHang();
+
+        if (diaChi == null || diaChi.trim().isEmpty()) {
+            Toast.makeText(this,
+                    "Vui lòng cập nhật địa chỉ giao hàng!",
+                    Toast.LENGTH_LONG).show();
+
+            startActivity(new Intent(this, DiaChiGiaoHangActivity.class));
+            finish();
+            return false;
+        }
+
+        if (nguoiNhan == null || nguoiNhan.trim().isEmpty()) {
+            nguoiNhan = "Khách hàng";
+        }
+
+        // Lấy thông tin đơn hàng từ màn hình trước
         maDon = intent.getStringExtra("maDon");
 
         if (maDon == null || maDon.trim().isEmpty()) {
@@ -74,14 +117,11 @@ public class DatHangThanhCongActivity extends AppCompatActivity {
         tongTien = intent.getIntExtra("tongTien", 0);
 
         phuongThuc = intent.getStringExtra("phuongThuc");
-        diaChi = intent.getStringExtra("diaChi");
         cuaHang = intent.getStringExtra("cuaHang");
-        nguoiNhan = intent.getStringExtra("nguoiNhan");
 
-        // LẤY DANH SÁCH COMBO TỪ MÀN HÌNH TRƯỚC
+        // Lấy danh sách combo
         danhSachMonJson = intent.getStringExtra("danhSachMonJson");
 
-        // Hỗ trợ trường hợp màn hình trước sử dụng key danhSachMon
         if (danhSachMonJson == null || danhSachMonJson.trim().isEmpty()) {
             danhSachMonJson = intent.getStringExtra("danhSachMon");
         }
@@ -90,22 +130,15 @@ public class DatHangThanhCongActivity extends AppCompatActivity {
             danhSachMonJson = "[]";
         }
 
-        if (phuongThuc == null) {
+        if (phuongThuc == null || phuongThuc.trim().isEmpty()) {
             phuongThuc = "Tiền mặt";
         }
 
-        if (diaChi == null) {
-            diaChi = "Chưa cập nhật địa chỉ";
-        }
-
-        if (cuaHang == null) {
+        if (cuaHang == null || cuaHang.trim().isEmpty()) {
             cuaHang = "TAN MAI";
         }
 
-        if (nguoiNhan == null) {
-            nguoiNhan = "Khách hàng";
-        }
-
+        // Hiển thị thông tin
         txtMaDon.setText(maDon);
 
         txtTongThanhToan.setText(
@@ -113,11 +146,16 @@ public class DatHangThanhCongActivity extends AppCompatActivity {
         );
 
         txtPhuongThuc.setText(phuongThuc);
+
+        // Địa chỉ lấy từ SQLite
         txtDiaChi.setText("Giao đến: " + diaChi);
+
         txtCuaHang.setText("Cửa hàng: " + cuaHang);
+
+        // Tên khách hàng lấy từ SQLite
         txtNguoiNhan.setText(nguoiNhan);
 
-        // LƯU ĐƠN HÀNG KÈM DANH SÁCH COMBO
+        // Lưu đơn hàng
         DonHangActivity.luuDonHang(
                 this,
                 maDon,
@@ -128,6 +166,8 @@ public class DatHangThanhCongActivity extends AppCompatActivity {
                 nguoiNhan,
                 danhSachMonJson
         );
+
+        return true;
     }
 
     private void xuLySuKien() {
@@ -164,7 +204,6 @@ public class DatHangThanhCongActivity extends AppCompatActivity {
                     .setNegativeButton("Không", null)
                     .setPositiveButton("Đồng ý", (dialog, which) -> {
 
-                        // CẬP NHẬT TRẠNG THÁI ĐƠN HÀNG
                         DonHangActivity.capNhatTrangThai(
                                 DatHangThanhCongActivity.this,
                                 maDon,
@@ -184,7 +223,6 @@ public class DatHangThanhCongActivity extends AppCompatActivity {
                         intent.putExtra("nguoiNhan", nguoiNhan);
                         intent.putExtra("danhSachMonJson", danhSachMonJson);
 
-                        // TẠO THÔNG BÁO
                         ThongBaoDonHang.taoKenhThongBao(this);
 
                         ThongBaoDonHang.guiThongBao(

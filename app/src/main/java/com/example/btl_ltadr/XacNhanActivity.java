@@ -37,13 +37,21 @@ public class XacNhanActivity extends AppCompatActivity {
     private String soDienThoai;
     private String tenKhachHang;
 
+    private DatabaseHelper databaseHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xac_nhan);
 
+        databaseHelper = new DatabaseHelper(this);
+
         anhXa();
-        nhanThongTinKhachHang();
+
+        if (!nhanThongTinKhachHang()) {
+            return;
+        }
+
         taoKenhThongBao();
         ganSuKienNhapOTP();
         xuLySuKien();
@@ -66,57 +74,40 @@ public class XacNhanActivity extends AppCompatActivity {
         btnHoanThanhOTP = findViewById(R.id.btnHoanThanhOTP);
     }
 
-    private void nhanThongTinKhachHang() {
+    // Lấy thông tin khách hàng từ SQLite
+    private boolean nhanThongTinKhachHang() {
         Intent intent = getIntent();
 
         soDienThoai = intent.getStringExtra("SO_DIEN_THOAI");
-        tenKhachHang = intent.getStringExtra("TEN_KHACH_HANG");
 
-        if (soDienThoai == null) {
-            soDienThoai = "";
+        if (soDienThoai == null || !soDienThoai.matches("^0[0-9]{9}$")) {
+            Toast.makeText(this,
+                    "Số điện thoại không hợp lệ!",
+                    Toast.LENGTH_SHORT).show();
+            finish();
+            return false;
         }
 
-        if (tenKhachHang == null || tenKhachHang.trim().isEmpty()) {
+        // Mã khách hàng được tạo theo quy tắc KH + số điện thoại
+        String maKhachHang = "KH" + soDienThoai;
 
-            SharedPreferences preferences = getSharedPreferences(
-                    "FOODIE_DATA",
-                    MODE_PRIVATE
-            );
+        KhachHang khachHang = databaseHelper.layKhachHang(maKhachHang);
 
-            String duLieu = preferences.getString(
-                    "DANH_SACH_TAI_KHOAN",
-                    "[]"
-            );
-
-            try {
-                org.json.JSONArray danhSach = new org.json.JSONArray(duLieu);
-
-                for (int i = 0; i < danhSach.length(); i++) {
-                    org.json.JSONObject taiKhoan = danhSach.getJSONObject(i);
-
-                    if (soDienThoai.equals(
-                            taiKhoan.optString("SO_DIEN_THOAI")
-                    )) {
-                        tenKhachHang = taiKhoan.optString(
-                                "TEN_KHACH_HANG",
-                                ""
-                        );
-                        break;
-                    }
-                }
-
-            } catch (Exception e) {
-                tenKhachHang = "";
-            }
+        if (khachHang == null) {
+            Toast.makeText(this,
+                    "Số điện thoại chưa đăng ký tài khoản!",
+                    Toast.LENGTH_LONG).show();
+            finish();
+            return false;
         }
 
-        if (tenKhachHang == null) {
-            tenKhachHang = "";
-        }
+        tenKhachHang = khachHang.getTenKhachHang();
 
         txtThongBaoOTP.setText(
                 "Mã xác thực đã được gửi đến " + soDienThoai
         );
+
+        return true;
     }
 
     private void taoKenhThongBao() {
@@ -166,11 +157,9 @@ public class XacNhanActivity extends AppCompatActivity {
                 (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         if (manager == null) {
-            Toast.makeText(
-                    this,
+            Toast.makeText(this,
                     "Không thể tạo thông báo OTP.",
-                    Toast.LENGTH_LONG
-            ).show();
+                    Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -184,10 +173,10 @@ public class XacNhanActivity extends AppCompatActivity {
 
         builder.setSmallIcon(android.R.drawable.ic_dialog_info)
                 .setContentTitle("Foodie - Mã xác thực")
-                .setContentText("Mã OTP của bạn là: " + maOTP)
+                .setContentText("Mã OTP kiểm thử: " + maOTP)
                 .setStyle(
                         new Notification.BigTextStyle().bigText(
-                                "Mã OTP của bạn là: " + maOTP
+                                "Mã OTP kiểm thử: " + maOTP
                         )
                 )
                 .setPriority(Notification.PRIORITY_HIGH)
@@ -203,20 +192,12 @@ public class XacNhanActivity extends AppCompatActivity {
             cacOOTP[i].addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(
-                        CharSequence s,
-                        int start,
-                        int count,
-                        int after
-                ) {
+                        CharSequence s, int start, int count, int after) {
                 }
 
                 @Override
                 public void onTextChanged(
-                        CharSequence s,
-                        int start,
-                        int before,
-                        int count
-                ) {
+                        CharSequence s, int start, int before, int count) {
                     if (s.length() == 1) {
                         cacOOTP[viTri + 1].requestFocus();
                     }
@@ -254,37 +235,32 @@ public class XacNhanActivity extends AppCompatActivity {
             xoaCacOOTP();
             taoVaGuiOTP();
 
-            Toast.makeText(
-                    this,
+            Toast.makeText(this,
                     "Đã tạo mã OTP mới. Kiểm tra thông báo!",
-                    Toast.LENGTH_SHORT
-            ).show();
+                    Toast.LENGTH_SHORT).show();
         });
 
         btnHoanThanhOTP.setOnClickListener(v -> {
             String maNhap = layMaOTPDaNhap();
 
             if (maNhap.length() != 6) {
-                Toast.makeText(
-                        this,
+                Toast.makeText(this,
                         "Vui lòng nhập đủ 6 chữ số OTP",
-                        Toast.LENGTH_SHORT
-                ).show();
+                        Toast.LENGTH_SHORT).show();
                 return;
             }
 
             if (!maNhap.equals(maOTP)) {
-                Toast.makeText(
-                        this,
+                Toast.makeText(this,
                         "Mã OTP không chính xác!",
-                        Toast.LENGTH_SHORT
-                ).show();
+                        Toast.LENGTH_SHORT).show();
 
                 xoaCacOOTP();
                 return;
             }
 
-            // Lưu phiên đăng nhập sau khi OTP chính xác
+            // Lưu trạng thái phiên đăng nhập
+            // Thông tin khách hàng vẫn được lưu trong SQLite
             SharedPreferences session = getSharedPreferences(
                     "FOODIE_SESSION",
                     MODE_PRIVATE
@@ -296,12 +272,9 @@ public class XacNhanActivity extends AppCompatActivity {
                     .putString("TEN_KHACH_HANG", tenKhachHang)
                     .apply();
 
-
-            Toast.makeText(
-                    this,
+            Toast.makeText(this,
                     "Xác nhận thành công!",
-                    Toast.LENGTH_SHORT
-            ).show();
+                    Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(
                     XacNhanActivity.this,
@@ -325,8 +298,8 @@ public class XacNhanActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(
             int requestCode,
             String[] permissions,
-            int[] grantResults
-    ) {
+            int[] grantResults) {
+
         super.onRequestPermissionsResult(
                 requestCode,
                 permissions,
@@ -338,12 +311,19 @@ public class XacNhanActivity extends AppCompatActivity {
                     grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 guiThongBaoOTP();
             } else {
-                Toast.makeText(
-                        this,
+                Toast.makeText(this,
                         "Quyền thông báo bị từ chối. OTP kiểm thử: " + maOTP,
-                        Toast.LENGTH_LONG
-                ).show();
+                        Toast.LENGTH_LONG).show();
             }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (databaseHelper != null) {
+            databaseHelper.close();
         }
     }
 }
